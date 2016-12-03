@@ -1,4 +1,5 @@
 import arrow
+from dateutil import tz
 
 def agenda(startDay, endDay, startTime, endTime, busyList):
   begin_time = arrow.get(startTime)
@@ -6,7 +7,7 @@ def agenda(startDay, endDay, startTime, endTime, busyList):
   begin_date = arrow.get(startDay).replace(hour=begin_time.hour, minute=begin_time.minute)
   end_date = arrow.get(endDay).replace(hour=end_time.hour, minute=end_time.minute)
 
-  cur_time = begin_date
+  cur_time = begin_date.replace(tzinfo=tz.tzlocal())
   fullAgenda = []
   for event in busyList:
     event_start = arrow.get(event['start'])
@@ -35,7 +36,7 @@ def agenda(startDay, endDay, startTime, endTime, busyList):
     elif event_end > cur_time.replace(hour=end_time.hour, minute=end_time.minute):
       print("---HERE")
       
-    cur_time = event_end
+    cur_time = event_end.replace(tzinfo=tz.tzlocal())
     fullAgenda.append(event)
     
   
