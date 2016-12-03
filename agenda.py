@@ -9,10 +9,12 @@ def agenda(startDay, endDay, startTime, endTime, busyList):
 
   cur_time = begin_date.replace(tzinfo=tz.tzlocal())
   fullAgenda = []
+  print(busyList)
   for event in busyList:
     event_start = arrow.get(event['start'])
     event_end = arrow.get(event['end'])
     
+    print("")
     print("Cur_time   : " + cur_time.isoformat())
     print("Event_Start: " + event_start.isoformat())
     print("")
