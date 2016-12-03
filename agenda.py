@@ -2,6 +2,11 @@ import arrow
 from dateutil import tz
 
 def agenda(startDay, endDay, startTime, endTime, busyList):
+  print("start: " + startDay)
+  print("end  : " + endDay)
+  print("starT: " + startTime)
+  print("endT : " + endTime)
+  
   begin_time = arrow.get(startTime)
   end_time = arrow.get(endTime)
   begin_date = arrow.get(startDay).replace(hour=begin_time.hour, minute=begin_time.minute)
