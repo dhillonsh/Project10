@@ -91,7 +91,7 @@ def selectcalendars():
     for calendar in request.form.getlist('calendarList[]'):
       print(flask.session['begin_date'])
       print(flask.session['end_date'])
-      eventList = gcal_service.events().list(calendarId=calendar, timeMin=arrow.get(flask.session['begin_date']).replace(hour=begin_time.hour,minute=begin_time.minute).isoformat(), timeMax=flask.session['end_date'], singleEvents=True, orderBy='startTime').execute()
+      eventList = gcal_service.events().list(calendarId=calendar, timeMin=arrow.get(flask.session['begin_date']).replace(hour=begin_time.hour,minute=begin_time.minute).isoformat(), timeMax=arrow.get(flask.session['end_date']).replace(hour=end_time.hour,minute=end_time.minute), singleEvents=True, orderBy='startTime').execute()
       print(eventList)
       for item in eventList['items']:
         if 'transparency' in item:
