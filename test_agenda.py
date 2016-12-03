@@ -60,6 +60,7 @@ def test_singleEvent():
 def test_multipleEventsSingleDay():
   busyList = [{'summary': 'randomEvent1', 'start': "2016-11-17T08:00:00:00", 'end': "2016-11-17T08:30:00:00"}, {'summary': 'randomEvent2', 'start': "2016-11-17T13:21:00:00", 'end': "2016-11-17T15:55:00:00"}]
   randomEvents = agenda("2016-11-17","2016-11-17","2016-11-17T08:00:00:00", "2016-11-17T17:00:00:00", busyList)
+  print("")
   print(randomEvents)
   assert len(randomEvents) == 4
   assert arrow.get(randomEvents[0]['start']).format('YYYY-MM-DD HH:mm') == "2016-11-17 08:00"
