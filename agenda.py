@@ -14,7 +14,6 @@ def agenda(startDay, endDay, startTime, endTime, busyList):
     
     print("Cur_time: " + cur_time.isoformat())
     print("Event_Start: " + event_start.isoformat())
-    
     if cur_time < event_start:
       #While there is a gap from now to the next event. Iterate through days until next event
       while cur_time < event_start.replace(hour=begin_time.hour,minute=begin_time.minute):
@@ -26,8 +25,12 @@ def agenda(startDay, endDay, startTime, endTime, busyList):
       toAppend = {'summary': 'Available', 'start': cur_time.isoformat(), 'end': event_start.isoformat()}
       toAppend['formattedDate'] = toAppend['formattedDate'] = formatDates(toAppend['start'], toAppend['end'])
       fullAgenda.append(toAppend)
+    elif event_end > cur_time.replace(hour=end_time.hour, minute=end_time.minute):
+      print("---HERE")
+      
     cur_time = event_end
     fullAgenda.append(event)
+    
 
   #Fill in the days after the last event as `Available`
   while cur_time < end_date:
