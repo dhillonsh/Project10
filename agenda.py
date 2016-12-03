@@ -12,18 +12,18 @@ def agenda(startDay, endDay, startTime, endTime, busyList):
     event_start = arrow.get(event['start'])
     event_end = arrow.get(event['end'])
     
-    print("Cur_time: " + cur_time.isoformat())
+    print("Cur_time   : " + cur_time.isoformat())
     print("Event_Start: " + event_start.isoformat())
+    print("")
     if cur_time < event_start:
-      if event_end < cur_time.replace(hour=end_time.hour, minute=end_time.minute):
       #While there is a gap from now to the next event. Iterate through days until next event
-        while cur_time < event_start.replace(hour=begin_time.hour,minute=begin_time.minute):
-          print(" -- > Sub cur_time: " + cur_time.isoformat())
-          if cur_time < cur_time.replace(hour=end_time.hour, minute=end_time.minute):
-            toAppend = {'summary': 'Available', 'start': cur_time.isoformat(), 'end': cur_time.replace(hour=end_time.hour, minute=end_time.minute).isoformat()}
-            toAppend['formattedDate'] = formatDates(toAppend['start'], toAppend['end'])
-            fullAgenda.append(toAppend)
-          cur_time = cur_time.replace(hour=begin_time.hour, minute=begin_time.minute,days=+1)
+      while cur_time < event_start.replace(hour=begin_time.hour,minute=begin_time.minute):
+        print(" -- > Sub cur_time: " + cur_time.isoformat())
+        if cur_time < cur_time.replace(hour=end_time.hour, minute=end_time.minute):
+          toAppend = {'summary': 'Available', 'start': cur_time.isoformat(), 'end': cur_time.replace(hour=end_time.hour, minute=end_time.minute).isoformat()}
+          toAppend['formattedDate'] = formatDates(toAppend['start'], toAppend['end'])
+          fullAgenda.append(toAppend)
+        cur_time = cur_time.replace(hour=begin_time.hour, minute=begin_time.minute,days=+1)
       toAppend = {'summary': 'Available', 'start': cur_time.isoformat(), 'end': event_start.isoformat()}
       toAppend['formattedDate'] = toAppend['formattedDate'] = formatDates(toAppend['start'], toAppend['end'])
       fullAgenda.append(toAppend)
