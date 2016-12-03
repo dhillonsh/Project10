@@ -96,10 +96,9 @@ def selectcalendars():
           continue
 
         if 'dateTime' not in item['start']:
-          print(arrow.get(item['start']['date']).isoformat())
-          item['start']['dateTime'] = arrow.get(item['start']['date']).replace(hour=begin_time.hour, minute=begin_time.minute).isoformat()
+          item['start']['dateTime'] = arrow.get(item['start']['date']).replace(hour=0, minute=0).isoformat()
         if 'dateTime' not in item['end']:
-          item['end']['dateTime'] = arrow.get(item['end']['date']).replace(hour=begin_time.hour, minute=begin_time.minute).isoformat()
+          item['end']['dateTime'] = arrow.get(item['end']['date']).replace(hour=0, minute=0).isoformat()
 
         itemStart = arrow.get(item['start']['dateTime'])
         itemEnd = arrow.get(item['end']['dateTime'])
