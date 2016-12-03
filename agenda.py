@@ -21,10 +21,13 @@ def agenda(startDay, endDay, startTime, endTime, busyList):
         print(" -- > Sub cur_time: " + cur_time.isoformat())
         if cur_time < cur_time.replace(hour=end_time.hour, minute=end_time.minute):
           toAppend = {'summary': 'Available', 'start': cur_time.isoformat(), 'end': cur_time.replace(hour=end_time.hour, minute=end_time.minute).isoformat()}
+          print(" --  -- > Inserting in loop 2: " + toAppend['start'] + " to " + toAppend['end'])
           toAppend['formattedDate'] = formatDates(toAppend['start'], toAppend['end'])
           fullAgenda.append(toAppend)
         cur_time = cur_time.replace(hour=begin_time.hour, minute=begin_time.minute,days=+1)
+        
       toAppend = {'summary': 'Available', 'start': cur_time.isoformat(), 'end': event_start.isoformat()}
+      print(" --> In default loop: " + toAppend['start'] + " to " + toAppend['end'])
       toAppend['formattedDate'] = toAppend['formattedDate'] = formatDates(toAppend['start'], toAppend['end'])
       fullAgenda.append(toAppend)
     elif event_end > cur_time.replace(hour=end_time.hour, minute=end_time.minute):
