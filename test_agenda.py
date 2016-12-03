@@ -18,7 +18,7 @@ def test_noEvents():
   assert arrow.get(multipleDays[1]['end']).format('YYYY-MM-DD HH:mm') == "2016-11-18 17:00"
 
 def test_singleEvent():
-  busyList = [{'summary': 'randomEvent', 'start': "2016-11-17T08:00:00:00", 'end': "2016-11-17T08:30:00:00"}]
+  busyList = [{'summary': 'randomEvent', 'start': "2016-11-17T08:00:00-08:00", 'end': "2016-11-17T08:30:00-08:00"}]
   
   #Event at the start of the day and time
   startDayEvent = agenda("2016-11-17T00:00:00-08:00","2016-11-17T00:00:00-08:00","2016-11-17T08:00:00-08:00", "2016-11-17T17:00:00-08:00", busyList)
@@ -31,8 +31,8 @@ def test_singleEvent():
   assert startDayEvent[1]['summary'] == 'Available'
 
   #Event at the end of the day and time
-  busyList[0]['start'] = "2016-11-17T16:30:00:00"
-  busyList[0]['end'] = "2016-11-17T17:00:00:00"
+  busyList[0]['start'] = "2016-11-17T16:30:00-08:00"
+  busyList[0]['end'] = "2016-11-17T17:00:00-08:00"
   endDayEvent = agenda("2016-11-17T00:00:00-08:00","2016-11-17T00:00:00-08:00","2016-11-17T08:00:00-08:00", "2016-11-17T17:00:00-08:00", busyList)
   assert len(endDayEvent) == 2
   assert arrow.get(endDayEvent[0]['start']).format('YYYY-MM-DD HH:mm') == "2016-11-17 08:00"
@@ -43,8 +43,8 @@ def test_singleEvent():
   assert endDayEvent[1]['summary'] == 'randomEvent'
   
   #Event in the middle of a day
-  busyList[0]['start'] = "2016-11-17T13:30:00:00"
-  busyList[0]['end'] = "2016-11-17T14:00:00:00"
+  busyList[0]['start'] = "2016-11-17T13:30:00-08:00"
+  busyList[0]['end'] = "2016-11-17T14:00:00-08:00"
   middleDayEvent = agenda("2016-11-17T00:00:00-08:00","2016-11-17T00:00:00-08:00","2016-11-17T08:00:00-08:00", "2016-11-17T17:00:00-08:00", busyList)
   print(middleDayEvent)
   assert len(middleDayEvent) == 3
@@ -59,7 +59,7 @@ def test_singleEvent():
   assert middleDayEvent[2]['summary'] == 'Available'
 
 def atest_multipleEventsSingleDay():
-  busyList = [{'summary': 'randomEvent1', 'start': "2016-11-17T08:00:00:00", 'end': "2016-11-17T08:30:00:00"}, {'summary': 'randomEvent2', 'start': "2016-11-17T13:21:00:00", 'end': "2016-11-17T15:55:00:00"}]
+  busyList = [{'summary': 'randomEvent1', 'start': "2016-11-17T08:00:00-08:00", 'end': "2016-11-17T08:30:00-08:00"}, {'summary': 'randomEvent2', 'start': "2016-11-17T13:21:00-08:00", 'end': "2016-11-17T15:55:00-08:00"}]
   randomEvents = agenda("2016-11-17T00:00:00-08:00","2016-11-17T00:00:00-08:00","2016-11-17T08:00:00-08:00", "2016-11-17T17:00:00-08:00", busyList)
   print("")
   print(randomEvents)
@@ -79,7 +79,7 @@ def atest_multipleEventsSingleDay():
 
 def atest_noFreeTime():
   #Single Event, all day
-  busyList = [{'summary': 'randomEvent1', 'start': "2016-11-17T08:00:00:00", 'end': "2016-11-17T17:00:00:00"}]
+  busyList = [{'summary': 'randomEvent1', 'start': "2016-11-17T08:00:00-08:00", 'end': "2016-11-17T17:00:00-08:00"}]
   singleAllDayEvent = agenda("2016-11-17T00:00:00-08:00","2016-11-17T00:00:00-08:00","2016-11-17T08:00:00-08:00", "2016-11-17T17:00:00-08:00", busyList)
   assert len(singleAllDayEvent) == 1
   assert arrow.get(singleAllDayEvent[0]['start']).format('YYYY-MM-DD HH:mm') == "2016-11-17 08:00"
@@ -87,7 +87,7 @@ def atest_noFreeTime():
   assert singleAllDayEvent[0]['summary'] == 'randomEvent1'
   
   #Two events, all day
-  busyList = [{'summary': 'randomEvent1', 'start': "2016-11-17T08:00:00:00", 'end': "2016-11-17T11:00:00:00"}, {'summary': 'randomEvent2', 'start': "2016-11-17T11:00:00:00", 'end': "2016-11-17T17:00:00:00"}]
+  busyList = [{'summary': 'randomEvent1', 'start': "2016-11-17T08:00:00-08:00", 'end': "2016-11-17T11:00:00-08:00"}, {'summary': 'randomEvent2', 'start': "2016-11-17T11:00:00-08:00", 'end': "2016-11-17T17:00:00-08:00"}]
   twoAllDayEvents = agenda("2016-11-17T00:00:00-08:00","2016-11-17T00:00:00-08:00","2016-11-17T08:00:00-08:00", "2016-11-17T17:00:00-08:00", busyList)
   assert len(twoAllDayEvents) == 2
   assert arrow.get(twoAllDayEvents[0]['start']).format('YYYY-MM-DD HH:mm') == "2016-11-17 08:00"
@@ -99,7 +99,7 @@ def atest_noFreeTime():
 
 def atest_eventPastBoundaries():
   #Event starts 30 minutes before start time and ends 30 minutes after start time
-  busyList = [{'summary': 'randomEvent', 'start': "2016-11-17T07:30:00:00", 'end': "2016-11-17T08:30:00:00"}]
+  busyList = [{'summary': 'randomEvent', 'start': "2016-11-17T07:30:00-08:00", 'end': "2016-11-17T08:30:00-08:00"}]
   earlyEvent = agenda("2016-11-17T00:00:00-08:00","2016-11-17T00:00:00-08:00","2016-11-17T08:00:00-08:00", "2016-11-17T17:00:00-08:00", busyList)
   assert len(earlyEvent) == 2
   assert arrow.get(earlyEvent[0]['start']).format('YYYY-MM-DD HH:mm') == "2016-11-17 07:30"
@@ -110,7 +110,7 @@ def atest_eventPastBoundaries():
   assert earlyEvent[1]['summary'] == 'Available'
   
   #Event start 30 minutes before end time and ends 30 minutes after end time
-  busyList = [{'summary': 'randomEvent', 'start': "2016-11-17T16:30:00:00", 'end': "2016-11-17T17:30:00:00"}]
+  busyList = [{'summary': 'randomEvent', 'start': "2016-11-17T16:30:00-08:00", 'end': "2016-11-17T17:30:00-08:00"}]
   lateEvent = agenda("2016-11-17T00:00:00-08:00","2016-11-17T00:00:00-08:00","2016-11-17T08:00:00-08:00", "2016-11-17T17:00:00-08:00", busyList)
   assert len(lateEvent) == 2
   assert arrow.get(lateEvent[0]['start']).format('YYYY-MM-DD HH:mm') == "2016-11-17 08:00"
@@ -121,7 +121,7 @@ def atest_eventPastBoundaries():
   assert lateEvent[1]['summary'] == 'randomEvent'
   
   
-  busyList = [{'summary': 'randomEvent1', 'start': "2016-11-17T07:30:00:00", 'end': "2016-11-17T08:30:00:00"}, {'summary': 'randomEvent2', 'start': "2016-11-17T16:30:00:00", 'end': "2016-11-17T17:30:00:00"}]
+  busyList = [{'summary': 'randomEvent1', 'start': "2016-11-17T07:30:00-08:00", 'end': "2016-11-17T08:30:00-08:00"}, {'summary': 'randomEvent2', 'start': "2016-11-17T16:30:00-08:00", 'end': "2016-11-17T17:30:00-08:00"}]
   earlyAndLateEvents = agenda("2016-11-17T00:00:00-08:00","2016-11-17T00:00:00-08:00","2016-11-17T08:00:00-08:00", "2016-11-17T17:00:00-08:00", busyList)
   assert len(earlyAndLateEvents) == 3
   assert arrow.get(earlyEvent[0]['start']).format('YYYY-MM-DD HH:mm') == "2016-11-17 07:30"
