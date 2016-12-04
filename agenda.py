@@ -2,13 +2,6 @@ import arrow
 from dateutil import tz
 
 def agenda(startDay, endDay, startTime, endTime, busyList):
-  print("Start Day : " + startDay)
-  print("End Day   : " + endDay)
-  print("Start Time: " + startTime)
-  print("End Time  : " + endTime)
-  print(busyList)
-  print(" ---- - Done ---- -")
-  
   begin_time = arrow.get(startTime)
   end_time = arrow.get(endTime)
   begin_date = arrow.get(startDay).replace(hour=begin_time.hour, minute=begin_time.minute)
@@ -20,30 +13,23 @@ def agenda(startDay, endDay, startTime, endTime, busyList):
   for event in busyList:
     event_start = arrow.get(event['start'])
     event_end = arrow.get(event['end'])
-    
-    print("")
-    print("Cur_time   : " + cur_time.isoformat())
-    print("Event_Start: " + event_start.isoformat())
-    print("")
+
     if cur_time < event_start:
       #While there is a gap from now to the next event. Iterate through days until next event
       while cur_time < event_start.replace(hour=begin_time.hour,minute=begin_time.minute):
-        print(" -- > Sub cur_time: " + cur_time.isoformat())
+        #print(" -- > Sub cur_time: " + cur_time.isoformat())
         if cur_time < cur_time.replace(hour=end_time.hour, minute=end_time.minute):
           toAppend = {'summary': 'Available', 'start': cur_time.isoformat(), 'end': cur_time.replace(hour=end_time.hour, minute=end_time.minute).isoformat()}
-          print(" --  -- > Inserting in loop 2: " + toAppend['start'] + " to " + toAppend['end'])
+          #print(" --  -- > Inserting in loop 2: " + toAppend['start'] + " to " + toAppend['end'])
           toAppend['formattedDate'] = formatDates(toAppend['start'], toAppend['end'])
           fullAgenda.append(toAppend)
         cur_time = cur_time.replace(hour=begin_time.hour, minute=begin_time.minute,days=+1)
       
       if cur_time < event_start:
         toAppend = {'summary': 'Available', 'start': cur_time.isoformat(), 'end': event_start.isoformat()}
-        print(" --> In default loop: " + toAppend['start'] + " to " + toAppend['end'])
+        #print(" --> In default loop: " + toAppend['start'] + " to " + toAppend['end'])
         toAppend['formattedDate'] = toAppend['formattedDate'] = formatDates(toAppend['start'], toAppend['end'])
         fullAgenda.append(toAppend)
-          
-    elif event_end > cur_time.replace(hour=end_time.hour, minute=end_time.minute):
-      print("---HERE")
       
     cur_time = event_end.replace(tzinfo=tz.tzlocal())
     fullAgenda.append(event)
