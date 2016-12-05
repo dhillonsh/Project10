@@ -79,6 +79,11 @@ def index():
     init_session_values()
   return render_template('index.html')
 
+@app.route("/arranger")
+def arranger():
+  app.logger.debug("Entering arranger")
+  return render_template('index.html')
+
 @app.route("/logout")
 def logout():
   flask.session.clear()
