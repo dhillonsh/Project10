@@ -83,7 +83,7 @@ def index():
 def arranger(proposalID):
     app.logger.debug("Entering arranger")
     meetingProposal = get_records(collection, {'id': proposalID})
-    if meetingProposal is Empty:
+    if not meetingProposal:
         return flask.render_template('page_not_found.html'), 404
     print(meetingProposal)
     return render_template('index.html')
