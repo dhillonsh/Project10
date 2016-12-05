@@ -296,7 +296,7 @@ def setrange():
     f = request.form
     for key in f.keys():
         for value in f.getlist(key):
-            print key,":",value
+            print(key,":",value)
     flask.flash("Setrange gave us '" + request.form.get('daterange') + "' and [from: " + request.form.get('fromTime') + " to " + request.form.get('toTime') + "]")
     daterange = request.form.get('daterange')
     flask.session['daterange'] = daterange
