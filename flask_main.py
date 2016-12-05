@@ -2,6 +2,7 @@ import flask
 from flask import render_template
 from flask import request
 from flask import url_for
+from flask import jsonify # For AJAX transactions
 import uuid
 
 # Free Time calculation
@@ -80,6 +81,10 @@ def logout():
   flask.session.clear()
   return ""
 
+@app.route("/createproposal", methods=['POST'])
+def createproposal():
+    return jsonify(status='ok', returnData='abc')
+    
 @app.route("/choose")
 def choose():
     ## We'll need authorization to list calendars 
