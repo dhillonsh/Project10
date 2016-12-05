@@ -77,6 +77,7 @@ def index():
   app.logger.debug("Entering index")
   if 'begin_date' not in flask.session:
     init_session_values()
+    flask.session['callbackURL'] = 'index'
   return render_template('index.html')
 
 @app.route('/arranger/<proposalID>/')
@@ -86,6 +87,7 @@ def arranger(proposalID):
     if not meetingProposal:
         return flask.render_template('page_not_found.html'), 404
     print(meetingProposal)
+    flask.session['callbackURL'] = 'arranger'
     meetingProposal['daterange'] = arrow.get(meetingProposal['begin_date']).format("MM/DD/YYYY") + " - " + arrow.get(meetingProposal['end_date']).format("MM/DD/YYYY")
     meetingProposal['timerange'] = [arrow.get(meetingProposal['begin_time']).format("HH:mm"), arrow.get(meetingProposal['end_time']).format("HH:mm")]
     flask.session['arranger'] = meetingProposal
@@ -125,7 +127,8 @@ def choose():
     flask.session['calendarList'] = list_calendars(gcal_service)
     flask.g.calendars = flask.session['calendarList']
 
-    return render_template('index.html')
+    return flask.redirect(flask.url_for(flask.session['callbackURL']))
+    #return render_template('index.html')
 
 @app.route('/selectcalendars', methods=['POST'])
 def selectcalendars():
