@@ -84,8 +84,11 @@ def logout():
 
 @app.route("/createproposal", methods=['POST'])
 def createproposal():
-    primaryIndex = next(index for (index, d) in enumerate(flask.session['calendarList']) if d["Primary"] == "True")
-    print(flask.session['calendarList'][primaryIndex])
+    primaryEmail = ""
+    for index, dic in flask.session['calendarList'].items():
+        if 'Primary' in dic and dic['Primary'] == 'True:
+            primaryEmail = dic['id']
+    print(primaryEmail)
     print("")
     print(flask.session['busyList'])
     return jsonify(status='ok', returnData='abc')
