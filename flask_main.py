@@ -83,6 +83,8 @@ def logout():
 
 @app.route("/createproposal", methods=['POST'])
 def createproposal():
+    print(flask.session['calendarList'])
+    print("")
     print(flask.session['busyList'])
     return jsonify(status='ok', returnData='abc')
     
@@ -140,7 +142,7 @@ def selectcalendars():
           continue
 
         toAppend = {'start': item['start']['dateTime'], 'end': item['end']['dateTime']}
-        databaseEntry.append(toAppend)
+        databaseEntry.append(copy(toAppend))
         toAppend['summary'] = item['summary']
         toAppend['calendar'] = eventList['summary']
         toAppend['formattedDate'] = formatDates(arrow.get(toAppend['start']).isoformat(), arrow.get(toAppend['end']).isoformat())
