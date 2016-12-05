@@ -142,7 +142,7 @@ def selectcalendars():
           continue
 
         toAppend = {'start': item['start']['dateTime'], 'end': item['end']['dateTime']}
-        databaseEntry.append(copy(toAppend))
+        databaseEntry.append(copy.copy(toAppend))
         toAppend['summary'] = item['summary']
         toAppend['calendar'] = eventList['summary']
         toAppend['formattedDate'] = formatDates(arrow.get(toAppend['start']).isoformat(), arrow.get(toAppend['end']).isoformat())
