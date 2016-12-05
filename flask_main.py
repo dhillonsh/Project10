@@ -432,7 +432,7 @@ def cal_sort_key( cal ):
 def get_records(collection, searchType):
     records = [ ]
     search = { "type": "dated_calendar" }
-    search.upate(searchType)
+    search.update(searchType)
     for record in collection.find(search):
         records.append(record)
     return records 
