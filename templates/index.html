@@ -143,8 +143,18 @@ From: <input type="time" name="fromTime" id="fromTime" value="{{ session.timeran
 <script>
 	$(function() {
 		$('#createProposal').on('click', function() {
-			alert('testing');	
-			
+			$.ajax({
+			  method: "POST",
+			  url: "/createProposal",
+			  data: {
+			       
+			  },
+			  dataType: 'json',
+			  success:function(result) {
+				alert('test 1');
+			  }
+			});
+		     });
 		});
 		
 		
