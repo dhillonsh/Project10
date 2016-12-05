@@ -92,6 +92,7 @@ def arranger(proposalID):
     meetingProposal['timerange'] = [arrow.get(meetingProposal['begin_time']).format("HH:mm"), arrow.get(meetingProposal['end_time']).format("HH:mm")]
     flask.session['arranger'] = meetingProposal
     flask.g.proposal = True
+    print(flask.session['calendarList'])
     return render_template('index.html')
 
 @app.route("/logout")
