@@ -135,9 +135,11 @@ From: <input type="time" name="fromTime" id="fromTime" value="{{ session.timeran
 	  </div>
   </div>
   {% endfor %}
-	
-	<input type="button" id="createProposal" name="createProposal" value="Create Meeting Proposal" />
-	
+	<br>
+	<span align="center">
+		<input type="button" id="createProposal" name="createProposal" value="Create Meeting Proposal" />
+	</span>
+	<br>
 <script>
 	$(function() {
 		$('#createProposal').on('click', function() {
