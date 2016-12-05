@@ -86,6 +86,8 @@ def arranger(proposalID):
     if not meetingProposal:
         return flask.render_template('page_not_found.html'), 404
     print(meetingProposal)
+    meetingProposal['daterange'] = arrow.get(meetingProposal['begin_date']).format("MM/DD/YYYY") + " - " + arrow.get(meetingProposal['end_date']).format("MM/DD/YYYY")
+    meetingProposal['timerange'] = [arrow.get(meetingProposal['begin_time']).format("HH:mm A"), arrow.get(meetingProposal['end_time']).format("HH:mm A")]
     flask.session['arranger'] = meetingProposal
     flask.g.proposal = True
     return render_template('index.html')
@@ -440,12 +442,11 @@ def cal_sort_key( cal ):
     return (primary_key, selected_key, cal["summary"])
 
 def get_records(collection, searchType):
-    records = [ ]
     search = { "type": "dated_calendar" }
     search.update(searchType)
     for record in collection.find(search, {'_id': False}):
-        records.append(record)
-    return records 
+        return record
+    return {} 
 
 #################
 #
