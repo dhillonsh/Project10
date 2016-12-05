@@ -79,10 +79,11 @@ def index():
     init_session_values()
   return render_template('index.html')
 
-@app.route("/arranger")
-def arranger():
-  app.logger.debug("Entering arranger")
-  return render_template('index.html')
+@app.route('/arranger/<proposalID>/')
+def arranger(proposalID):
+    app.logger.debug("Entering arranger")
+    print("Propsal ID: " + proposalID)
+    return render_template('index.html')
 
 @app.route("/logout")
 def logout():
