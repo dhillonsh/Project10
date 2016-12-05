@@ -64,7 +64,16 @@
     </ul>
   {% endif %}
 {% endwith %}
-
+	
+{% if proposal is defined and session.arranger is defined %}
+<input type="text" id="daterange" name="daterange" size="12"
+     class="pull-down"
+     style="background: #fff; cursor: pointer; padding: 5px 10px;
+     border: 1px solid #ccc; width: 12em" >
+<br><br>
+From: <input type="time" name="fromTime" id="fromTime" value="{{ session.timerange.0 }}" /> to 
+	 <input type="time" name="toTime" id="toTime" value="{{ session.timerange.1 }}"/>
+{% else %}
 <h2>Date range for meeting</h2>
   <form action="/setrange" method="post">
   <input type="text" id="daterange" name="daterange" size="12"
@@ -99,6 +108,7 @@ From: <input type="time" name="fromTime" id="fromTime" value="{{ session.timeran
 <br><input type="submit" value="Choose time range" />
 	
 </form>
+{% endif %}
 
 {% if g.calendars is defined %}
 	<h3>Select Busy Calendars</h3>
