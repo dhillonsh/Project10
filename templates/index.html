@@ -71,10 +71,10 @@
 <input type="text" id="daterange" name="daterange" size="12"
      class="pull-down"
      style="background: #fff; cursor: pointer; padding: 5px 10px;
-     border: 1px solid #ccc; width: 12em" value="{{session.arranger.daterange}}" >
+     border: 1px solid #ccc; width: 12em" value="{{session.arranger.daterange}}" readonly="readonly">
 <br><br>
-From: <input type="time" name="fromTime" id="fromTime" value="{{ session.arranger.timerange.0 }}" /> to 
-	 <input type="time" name="toTime" id="toTime" value="{{ session.arranger.timerange.1 }}" />
+From: <input type="time" name="fromTime" id="fromTime" value="{{ session.arranger.timerange.0 }}" readonly="readonly"/> to 
+	 <input type="time" name="toTime" id="toTime" value="{{ session.arranger.timerange.1 }}" readonly="readonly"/>
 	<br>
 	<input type="submit" value="Get Calendars" />
 	
@@ -154,7 +154,7 @@ From: <input type="time" name="fromTime" id="fromTime" value="{{ session.timeran
 	<span align="center">
 		<input type="button" id="createProposal" name="createProposal" value="Create Meeting Proposal" />
 		<br>
-		Proposal Link: <input type="text" onClick="this.select();" id="proposalLink" name="proposalLink" style="display:hidden;" value="" />
+		Proposal Link: <input type="text" readonly="readonly" onClick="this.select();" id="proposalLink" name="proposalLink" style="display:hidden;" value="" />
 	</span>
 	<br>
 <script>
