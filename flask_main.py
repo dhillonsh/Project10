@@ -82,8 +82,10 @@ def index():
 @app.route('/arranger/<proposalID>/')
 def arranger(proposalID):
     app.logger.debug("Entering arranger")
-    print("Propsal ID: " + proposalID)
-    print(get_records(collection, {'id': proposalID}))
+    meetingProposal = get_records(collection, {'id': proposalID})
+    if meetingProposal is Empty:
+        return flask.render_template('page_not_found.html'), 404
+    print(meetingProposal)
     return render_template('index.html')
 
 @app.route("/logout")
@@ -169,6 +171,13 @@ def selectcalendars():
     flask.g.calendars = flask.session['calendarList']
     app.logger.debug("Returned from get_gcal_service")
     return render_template('index.html')
+
+@app.errorhandler(404)
+def page_not_found(error):
+    app.logger.debug("Page not found")
+    flask.session['linkback'] =  flask.url_for("/")
+    return flask.render_template('page_not_found.html'), 404
+
 ####
 #
 #  Google calendar authorization:
