@@ -141,27 +141,20 @@ From: <input type="time" name="fromTime" id="fromTime" value="{{ session.timeran
 	</span>
 	<br>
 <script>
-	$(function() {
-		$('#createProposal').on('click', function() {
-			$.ajax({
-			  method: "POST",
-			  url: "/createproposal",
-			  data: {
-			       
-			  },
-			  dataType: 'json',
-			  success:function(result) {
-				alert('test 1');
-				alert(result['returnData']);
-			  }
-			});
-		     });
+$(function() {
+	$('#createProposal').on('click', function() {
+		$.ajax({
+		  method: "POST",
+		  url: "/createproposal",
+		  data: {},
+		  dataType: 'json',
+		  success:function(result) {
+			alert('test 1');
+			alert(result['returnData']);
+		  }
 		});
-		
-		
-		
-		
 	});
+});
 	
 	$(document).ready(function() {
 		var busyEvents = {{ g.busyEvents | tojson  }}
