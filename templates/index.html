@@ -115,11 +115,11 @@ From: <input type="time" name="fromTime" id="fromTime" value="{{ session.timeran
 </form>
 {% endif %}
 
-{% if g.calendars is defined %}
+{% if session.calendarList is defined %}
 	<h3>Select Busy Calendars</h3>
 <form action="/selectcalendars" method="post">
   <div class="row">
-  {% for cal in g.calendars if cal.selected %}
+  {% for cal in session.calendarList if cal.selected %}
           <div class="col-md-4">
 	  <input type="checkbox" name="calendarList[]" value="{{ cal.id }}" /> {{ cal.summary }}
           </div>
