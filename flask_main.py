@@ -11,6 +11,7 @@ from agenda import *
 
 import json
 import logging
+import os
 
 # Date handling 
 import arrow # Replacement for datetime, based on moment.js
