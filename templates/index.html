@@ -144,47 +144,46 @@ From: <input type="time" name="fromTime" id="fromTime" value="{{ session.timeran
 $(function() {
 	$('#createProposal').on('click', function() {
 		$.ajax({
-		  method: "POST",
-		  url: "/createproposal",
-		  data: {},
-		  dataType: 'json',
-		  success:function(result) {
-			alert('test 1');
-			alert(result['returnData']);
-		  }
+			method: "POST",
+			url: "/createproposal",
+			data: {},
+			dataType: 'json',
+			success:function(result) {
+				alert('test 1');
+				alert(result['returnData']);
+			}
 		});
 	});
 });
-	
-	$(document).ready(function() {
-		var busyEvents = {{ g.busyEvents | tojson  }}
-		var eventsList = [];
-		for(var i = 0; i < busyEvents.length; i++) {	
-			eventsList.push({'title': busyEvents[i]['summary'], 'start': busyEvents[i]['start'], 'end': busyEvents[i]['end']});
-		}
-		$('#calendar').fullCalendar({
-			header: {
-				left: 'prev,next today',
-				center: 'title',
-				right: 'listDay,listWeek,month'
-			},
+$(document).ready(function() {
+	var busyEvents = {{ g.busyEvents | tojson  }}
+	var eventsList = [];
+	for(var i = 0; i < busyEvents.length; i++) {	
+		eventsList.push({'title': busyEvents[i]['summary'], 'start': busyEvents[i]['start'], 'end': busyEvents[i]['end']});
+	}
+	$('#calendar').fullCalendar({
+		header: {
+			left: 'prev,next today',
+			center: 'title',
+			right: 'listDay,listWeek,month'
+		},
 
-			// customize the button names,
-			// otherwise they'd all just say "list"
-			views: {
-				listDay: { buttonText: 'list day' },
-				listWeek: { buttonText: 'list week' }
-			},
+		// customize the button names,
+		// otherwise they'd all just say "list"
+		views: {
+			listDay: { buttonText: 'list day' },
+			listWeek: { buttonText: 'list week' }
+		},
 
-			defaultView: 'month',
-			defaultDate: $('#daterange').val().split(' - ')[0],
-			navLinks: true, // can click day/week names to navigate views
-			editable: true,
-			eventLimit: true, // allow "more" link when too many events
-			events: eventsList
-		});
-		
+		defaultView: 'month',
+		defaultDate: $('#daterange').val().split(' - ')[0],
+		navLinks: true, // can click day/week names to navigate views
+		editable: true,
+		eventLimit: true, // allow "more" link when too many events
+		events: eventsList
 	});
+
+});
 
 </script>
 	<br>
