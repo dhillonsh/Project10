@@ -66,14 +66,17 @@
 {% endwith %}
 
 {% if g.proposal is defined and session.arranger is defined %}
-<h3>Date range for meeting proposed by {{ session.arranger.creator }}</h2>
+<h3>Date range for meeting proposed by {{ session.arranger.creator }}</h3>
+<form action="/setrange" method="post">
 <input type="text" id="daterange" name="daterange" size="12"
      class="pull-down"
      style="background: #fff; cursor: pointer; padding: 5px 10px;
-     border: 1px solid #ccc; width: 12em" value="{{session.arranger.daterange}}">
+     border: 1px solid #ccc; width: 12em" value="{{session.arranger.daterange}}" disabled>
 <br><br>
-From: <input type="time" name="fromTime" id="fromTime" value="{{ session.arranger.timerange.0 }}" /> to 
-	 <input type="time" name="toTime" id="toTime" value="{{ session.arranger.timerange.1 }}"/>
+From: <input type="time" name="fromTime" id="fromTime" value="{{ session.arranger.timerange.0 }}" disabled/> to 
+	 <input type="time" name="toTime" id="toTime" value="{{ session.arranger.timerange.1 }}" disabled/>
+	<input type="submit" value="Get Your Calendars" />
+	
 {% else %}
 <h2>Date range for meeting</h2>
   <form action="/setrange" method="post">
