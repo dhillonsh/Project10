@@ -145,13 +145,14 @@ From: <input type="time" name="fromTime" id="fromTime" value="{{ session.timeran
 		$('#createProposal').on('click', function() {
 			$.ajax({
 			  method: "POST",
-			  url: "/createProposal",
+			  url: "/createproposal",
 			  data: {
 			       
 			  },
 			  dataType: 'json',
 			  success:function(result) {
 				alert('test 1');
+				alert(result['returnData']);
 			  }
 			});
 		     });
