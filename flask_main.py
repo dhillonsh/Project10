@@ -86,7 +86,6 @@ def arranger(proposalID):
     if not meetingProposal:
         return flask.render_template('page_not_found.html'), 404
     print(meetingProposal)
-    meetingProposal.pop('_id')
     flask.session['arranger'] = meetingProposal
     flask.proposal = True
     return render_template('index.html')
@@ -444,7 +443,7 @@ def get_records(collection, searchType):
     records = [ ]
     search = { "type": "dated_calendar" }
     search.update(searchType)
-    for record in collection.find(search):
+    for record in collection.find(search, {'_id': False}):
         records.append(record)
     return records 
 
