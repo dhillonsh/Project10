@@ -154,7 +154,7 @@ $(function() {
 			success:function(result) {
 				if (typeof location.origin === 'undefined')
     					location.origin = location.protocol + '//' + location.host;
-				$('#proposalLink').val(location.origin + "/" + result['returnData']);
+				$('#proposalLink').val(location.origin + "/arranger/" + result['returnData']);
 				$('#proposalLink').show();
 			}
 		});
