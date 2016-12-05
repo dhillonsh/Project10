@@ -127,7 +127,7 @@ def choose():
     flask.session['calendarList'] = list_calendars(gcal_service)
     flask.g.calendars = flask.session['calendarList']
 
-    return flask.redirect(flask.url_for(flask.session['callbackURL']))
+    return flask.redirect(flask.url_for(flask.session['callbackURL'] if 'callbackURL' in flask.session else 'index'))
     #return render_template('index.html')
 
 @app.route('/selectcalendars', methods=['POST'])
