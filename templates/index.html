@@ -138,19 +138,21 @@ From: <input type="time" name="fromTime" id="fromTime" value="{{ session.timeran
 	<br>
 	<span align="center">
 		<input type="button" id="createProposal" name="createProposal" value="Create Meeting Proposal" />
+		<input type="text" id="proposalLink" name="proposalLink" style="display:hidden;" disabled value="" />
 	</span>
 	<br>
 <script>
 $(function() {
 	$('#createProposal').on('click', function() {
+		("#createProposal").attr('disabled','disabled');
 		$.ajax({
 			method: "POST",
 			url: "/createproposal",
 			data: {},
 			dataType: 'json',
 			success:function(result) {
-				alert('test 1');
-				alert(result['returnData']);
+				$('#proposalLink').val(result['returnData']));
+				$('#proposalLink').show();
 			}
 		});
 	});
