@@ -87,7 +87,7 @@ def arranger(proposalID):
         return flask.render_template('page_not_found.html'), 404
     print(meetingProposal)
     flask.session['arranger'] = meetingProposal
-    flask.proposal = True
+    flask.g.proposal = True
     return render_template('index.html')
 
 @app.route("/logout")
