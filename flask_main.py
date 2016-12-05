@@ -84,7 +84,8 @@ def logout():
 
 @app.route("/createproposal", methods=['POST'])
 def createproposal():
-    print(flask.session['calendarList'])
+    primaryIndex = next(index for (index, d) in enumerate(flask.session['calendarList']) if d["Primary"] == "True")
+    print(flask.session['calendarList'][primaryIndex])
     print("")
     print(flask.session['busyList'])
     return jsonify(status='ok', returnData='abc')
