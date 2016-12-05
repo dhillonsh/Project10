@@ -138,7 +138,8 @@ From: <input type="time" name="fromTime" id="fromTime" value="{{ session.timeran
 	<br>
 	<span align="center">
 		<input type="button" id="createProposal" name="createProposal" value="Create Meeting Proposal" />
-		<input type="text" id="proposalLink" name="proposalLink" style="display:hidden;" disabled value="" />
+		<br>
+		Proposal Link: <input type="text" id="proposalLink" name="proposalLink" style="display:hidden;" disabled value="" />
 	</span>
 	<br>
 <script>
@@ -151,7 +152,7 @@ $(function() {
 			data: {},
 			dataType: 'json',
 			success:function(result) {
-				$('#proposalLink').val(result['returnData']);
+				$('#proposalLink').val(window.location.href + "/" + result['returnData']);
 				$('#proposalLink').show();
 			}
 		});
