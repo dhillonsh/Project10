@@ -83,6 +83,7 @@ def index():
 def arranger(proposalID):
     app.logger.debug("Entering arranger")
     print("Propsal ID: " + proposalID)
+    print(get_records(collection))
     return render_template('index.html')
 
 @app.route("/logout")
@@ -97,7 +98,8 @@ def createproposal():
         if 'primary' in dic and dic['primary'] == True:
             primaryEmail = dic['id']
             break
-    entry = {'id': codecs.encode(os.urandom(32), 'hex').decode()[0:12], 'creator': primaryEmail, 'begin_date': flask.session['begin_date'], 'end_date': flask.session['end_date'], 'begin_time': flask.session['begin_time'], 'end_time': flask.session['end_time'], 'busyList': [{primaryEmail: flask.session['busyList']}]}
+    entry = {'type': "dated_calendar", 'id': codecs.encode(os.urandom(32), 'hex').decode()[0:12], 'creator': primaryEmail, 'begin_date': flask.session['begin_date'], 'end_date': flask.session['end_date'], 'begin_time': flask.session['begin_time'], 'end_time': flask.session['end_time'], 'busyList': [{primaryEmail: flask.session['busyList']}]}
+    collection.insert(entry)
     return jsonify(status='ok', returnData=entry['id'])
     
 @app.route("/choose")
@@ -427,6 +429,11 @@ def cal_sort_key( cal ):
        primary_key = "X"
     return (primary_key, selected_key, cal["summary"])
 
+def get_records(collection):
+    records = [ ]
+    for record in collection.find( { "type": "dated_calendar" } ):
+        records.append(record)
+    return records 
 
 #################
 #
