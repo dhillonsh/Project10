@@ -86,6 +86,8 @@ def arranger(proposalID):
     if not meetingProposal:
         return flask.render_template('page_not_found.html'), 404
     print(meetingProposal)
+    flask.session['arranger'] = meetingProposal
+    flask.proposal = True
     return render_template('index.html')
 
 @app.route("/logout")
@@ -175,7 +177,6 @@ def selectcalendars():
 @app.errorhandler(404)
 def page_not_found(error):
     app.logger.debug("Page not found")
-    flask.session['linkback'] =  flask.url_for("/")
     return flask.render_template('page_not_found.html'), 404
 
 ####
