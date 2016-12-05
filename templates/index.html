@@ -136,7 +136,20 @@ From: <input type="time" name="fromTime" id="fromTime" value="{{ session.timeran
   </div>
   {% endfor %}
 	
+	<input type="button" id="createProposal" name="createProposal" value="Create Meeting Proposal" />
+	
 <script>
+	$(function() {
+		$('#createProposal').on('click', function() {
+			alert('testing');	
+			
+		});
+		
+		
+		
+		
+	});
+	
 	$(document).ready(function() {
 		var busyEvents = {{ g.busyEvents | tojson  }}
 		var eventsList = [];
