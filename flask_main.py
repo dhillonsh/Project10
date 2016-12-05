@@ -89,9 +89,7 @@ def createproposal():
         if 'primary' in dic and dic['primary'] == True:
             primaryEmail = dic['id']
             break
-    print("[" + primaryEmail + "]")
-    print("")
-    print(flask.session['busyList'])
+    print({'creator': primaryEmail, 'begin_date': flask.session['begin_date'], 'end_date': flask.session['end_date'], 'begin_time': flask.session['begin_time'], 'end_time': flask.session['end_time'], 'busyList': [{primaryEmail: flask.session['busyList']}]})
     return jsonify(status='ok', returnData='abc')
     
 @app.route("/choose")
