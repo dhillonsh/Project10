@@ -12,6 +12,7 @@ from agenda import *
 import json
 import logging
 import os
+import codecs
 
 # Date handling 
 import arrow # Replacement for datetime, based on moment.js
@@ -92,7 +93,7 @@ def createproposal():
             break
     print({'creator': primaryEmail, 'begin_date': flask.session['begin_date'], 'end_date': flask.session['end_date'], 'begin_time': flask.session['begin_time'], 'end_time': flask.session['end_time'], 'busyList': [{primaryEmail: flask.session['busyList']}]})
     
-    print(os.urandom(24).encode('hex'))
+    print(codecs.encode(os.urandom(32), 'hex').decode())
     return jsonify(status='ok', returnData='abc')
     
 @app.route("/choose")
