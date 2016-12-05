@@ -83,6 +83,7 @@ def logout():
 
 @app.route("/createproposal", methods=['POST'])
 def createproposal():
+    print(flask.session['busyList'])
     return jsonify(status='ok', returnData='abc')
     
 @app.route("/choose")
@@ -116,6 +117,7 @@ def selectcalendars():
     end_time = arrow.get(flask.session['end_time'])
     
     busyTimes = []
+    databaseEntry = []
     for calendar in request.form.getlist('calendarList[]'):
       print(flask.session['begin_date'])
       print(flask.session['end_date'])
@@ -137,14 +139,17 @@ def selectcalendars():
         if itemEnd <= begin_date or itemStart >= end_date:
           continue
 
-        toAppend = {'summary': item['summary'], 'start': item['start']['dateTime'], 'end': item['end']['dateTime'], 'calendar': eventList['summary']}
+        toAppend = {'start': item['start']['dateTime'], 'end': item['end']['dateTime']}
+        databaseEntry.append(toAppend)
+        toAppend['summary'] = item['summary']
+        toAppend['calendar'] = eventList['summary']
         toAppend['formattedDate'] = formatDates(arrow.get(toAppend['start']).isoformat(), arrow.get(toAppend['end']).isoformat())
         busyTimes.append(toAppend)
               
     busyTimes = sorted(busyTimes, key=lambda k: k['start'])
     fullAgenda = agenda(flask.session['begin_date'], flask.session['end_date'], flask.session['begin_time'], flask.session['end_time'], busyTimes)
     flask.g.busyEvents = fullAgenda
-
+    flask.session['busyList'] = databaseEntry
     flask.g.calendars = flask.session['calendarList']
     app.logger.debug("Returned from get_gcal_service")
     return render_template('index.html')
