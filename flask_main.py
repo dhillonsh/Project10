@@ -4,6 +4,7 @@ from flask import request
 from flask import url_for
 from flask import jsonify # For AJAX transactions
 import uuid
+import copy
 
 # Free Time calculation
 from agenda import *
