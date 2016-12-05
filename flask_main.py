@@ -87,9 +87,10 @@ def createproposal():
     primaryEmail = ""
     for dic in flask.session['calendarList']:
         if 'Primary' in dic and dic['Primary'] == True:
+            print(dic)
             primaryEmail = dic['id']
             break
-    print(primaryEmail)
+    print("[" + primaryEmail + "]")
     print("")
     print(flask.session['busyList'])
     return jsonify(status='ok', returnData='abc')
