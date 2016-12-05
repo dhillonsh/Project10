@@ -85,9 +85,10 @@ def logout():
 @app.route("/createproposal", methods=['POST'])
 def createproposal():
     primaryEmail = ""
-    for index, dic in flask.session['calendarList'].items():
-        if 'Primary' in dic and dic['Primary'] == 'True':
-            primaryEmail = dic['id']
+    for index in flask.session['calendarList']:
+        for dic in flask.session['calendarList'][index]:
+            if 'Primary' in dic and dic['Primary'] == 'True':
+                primaryEmail = dic['id']
     print(primaryEmail)
     print("")
     print(flask.session['busyList'])
