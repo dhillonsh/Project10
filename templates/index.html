@@ -152,7 +152,9 @@ $(function() {
 			data: {},
 			dataType: 'json',
 			success:function(result) {
-				$('#proposalLink').val(window.location.href + "/" + result['returnData']);
+				if (typeof location.origin === 'undefined')
+    					location.origin = location.protocol + '//' + location.host;
+				$('#proposalLink').val(location.origin + "/" + result['returnData']);
 				$('#proposalLink').show();
 			}
 		});
