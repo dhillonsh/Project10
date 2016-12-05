@@ -142,7 +142,7 @@ def selectcalendars():
 
     flask.g.calendars = flask.session['calendarList']
     app.logger.debug("Returned from get_gcal_service")
-    return redirect(url_for('index'))
+    return flask.redirect(url_for('index'))
     #return render_template('index.html')
 ####
 #
