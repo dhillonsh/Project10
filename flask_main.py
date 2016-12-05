@@ -83,7 +83,7 @@ def index():
 def arranger(proposalID):
     app.logger.debug("Entering arranger")
     print("Propsal ID: " + proposalID)
-    print(get_records(collection))
+    print(get_records(collection, {'id': proposalID}))
     return render_template('index.html')
 
 @app.route("/logout")
@@ -429,9 +429,11 @@ def cal_sort_key( cal ):
        primary_key = "X"
     return (primary_key, selected_key, cal["summary"])
 
-def get_records(collection):
+def get_records(collection, searchType):
     records = [ ]
-    for record in collection.find( { "type": "dated_calendar" } ):
+    search = { "type": "dated_calendar" }
+    search.upate(searchType)
+    for record in collection.find(search):
         records.append(record)
     return records 
 
