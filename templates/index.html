@@ -66,6 +66,7 @@
 {% endwith %}
 
 {% if g.proposal is defined and session.arranger is defined %}
+<h2>Date range for meeting proposed by {{ session.arranger.creator }}</h2>
 <input type="text" id="daterange" name="daterange" size="12"
      class="pull-down"
      style="background: #fff; cursor: pointer; padding: 5px 10px;
