@@ -92,7 +92,7 @@ def createproposal():
             break
     print({'creator': primaryEmail, 'begin_date': flask.session['begin_date'], 'end_date': flask.session['end_date'], 'begin_time': flask.session['begin_time'], 'end_time': flask.session['end_time'], 'busyList': [{primaryEmail: flask.session['busyList']}]})
     
-    print(os.urandom(24).decode('latin1'))
+    print(os.urandom(24).encode('base-64'))
     return jsonify(status='ok', returnData='abc')
     
 @app.route("/choose")
