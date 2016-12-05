@@ -144,7 +144,7 @@ From: <input type="time" name="fromTime" id="fromTime" value="{{ session.timeran
 <script>
 $(function() {
 	$('#createProposal').on('click', function() {
-		("#createProposal").attr('disabled','disabled');
+		$("#createProposal").attr('disabled','disabled');
 		$.ajax({
 			method: "POST",
 			url: "/createproposal",
