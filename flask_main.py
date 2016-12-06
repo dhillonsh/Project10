@@ -149,6 +149,8 @@ def selectcalendars():
     
     busyTimes = []
     databaseEntry = []
+    print("Form Data:")
+    print(request.form.getlist('calendarList[]'))
     for calendar in request.form.getlist('calendarList[]'):
       print(flask.session['begin_date'])
       print(flask.session['end_date'])
