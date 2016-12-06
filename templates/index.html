@@ -66,6 +66,7 @@
 {% endwith %}
 
 {% if g.proposal is defined and session.arranger is defined %}
+	[{{session.primaryEmail}}] [{{session.arranger.creator}}]
   {% if session.primaryEmail == session.arranger.creator %}
 	Currently have responses from:
 	{% for key, value in session.arranger.busyList.items() %}
