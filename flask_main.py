@@ -184,11 +184,7 @@ def selectcalendars():
     flask.g.calendars = flask.session['calendarList']
     app.logger.debug("Returned from get_gcal_service")
     print("\n\nSending - \n\n")
-    print(flask.g)
-    if 'callbackURL' in flask.session and flask.session['callbackURL'] == 'arranger':
-        return flask.redirect(flask.url_for('arranger', proposalID=flask.session['arranger']['id'], extra=flask.g))
-    else:
-        return flask.redirect(flask.url_for('index', extra=flask.g))
+    return jsonify(status='ok', returnData=flask.g)
 
 @app.errorhandler(404)
 def page_not_found(error):
