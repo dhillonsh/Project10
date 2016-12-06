@@ -134,6 +134,8 @@ From: <input type="time" name="fromTime" id="fromTime" value="{{ session.timeran
 
 <span id="busyEvents" style="display:None;">
 	<h3>Busy Times:</h3>
+
+<!--	<h3>Busy Times:</h3>
   {% for busyEvent in g.busyEvents %}
   <div class="row" style="color:{% if busyEvent.summary == "Available" %}green{% else %}red{% endif %};">
 	<div class="col-md-2">
@@ -149,6 +151,7 @@ From: <input type="time" name="fromTime" id="fromTime" value="{{ session.timeran
 		{{ busyEvent.summary }}
 	  </div>
   </div>
+-->
 </span>
   {% endfor %}
 	<br>
@@ -160,6 +163,7 @@ From: <input type="time" name="fromTime" id="fromTime" value="{{ session.timeran
 	</span>
 	<br>
 {% endif %}
+	<!--
 <script>
 $(document).readypan>
 	<br>(function() {
@@ -193,13 +197,14 @@ $(document).readypan>
 });
 
 </script>
+
 	<br>
 	<div class="row">
 		<div class=".col-md-6">
 	<div id='calendar'></div>
 		</div>
 	</div>
-
+-->
 <script>
 $(function() {
 	$('#blockBusy').on('click', function() {
