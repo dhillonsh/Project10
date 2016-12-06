@@ -153,7 +153,6 @@ From: <input type="time" name="fromTime" id="fromTime" value="{{ session.timeran
   </div>
 {% endfor %}
 -->
-</span>
 	<br>
 {% if g.proposal is not defined %}
 	<span align="center">
@@ -163,7 +162,8 @@ From: <input type="time" name="fromTime" id="fromTime" value="{{ session.timeran
 	</span>
 	<br>
 {% endif %}
-
+</span>
+	
 <script>
 $(function() {
 	$('#blockBusy').on('click', function() {
@@ -180,6 +180,7 @@ $(function() {
 			dataType: 'json',
 			success:function(result) {
 				//result['returnData']['busyList']
+				console.log(result['returnData']['busyList']);
 				$('#busyEvents').show();
 			}
 		});
