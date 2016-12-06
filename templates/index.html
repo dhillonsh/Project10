@@ -159,9 +159,9 @@ From: <input type="time" name="fromTime" id="fromTime" value="{{ session.timeran
 	<br>
 <script>
 $(function() {
-	$('#blockBusy').on('submit', function() {
+	$('#blockBusy').submit(function(e) {
 		alert('a');
-		return false;
+		e.preventDefault();
 	});
 	
 	$('#createProposal').on('click', function() {
