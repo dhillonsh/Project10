@@ -132,9 +132,11 @@ From: <input type="time" name="fromTime" id="fromTime" value="{{ session.timeran
 
 {% endif %}
 
-<span id="busyEvents" style="display:None;">
+<span id="busyEventsSpan" style="display:None;">
 	<h3>Busy Times:</h3>
-
+<span>
+	
+	</span>
 <!--	<h3>Busy Times:</h3>
   {% for busyEvent in g.busyEvents %}
   <div class="row" style="color:{% if busyEvent.summary == "Available" %}green{% else %}red{% endif %};">
@@ -179,10 +181,13 @@ $(function() {
 			},
 			dataType: 'json',
 			success:function(result) {
-				console.log(result['returnData']['busyEvents']);
+				var htmlContent = "";
 				for (var i = 0; i < result['returnData']['busyEvents'].length; i++) {
-				    console.log(result['returnData']['busyEvents'][i]['summary']);
+					busyEvent = result['returnData']['busyEvents'][i];
+					htmlContent += '<div class="row" style="color:' + ((busyEvent['summary'] == "Available")?'green':'red') +';">';
+					htmlContent += '<div class="col-md-2">' + busyEvent['calendar'] + '</div><div class="col-md-4">' + busyEvent['formattedDate'] + '</div><div class="col-md-4">' + busyEvent['summary'] + '</div></div>';
 				}
+				$('#busyEventsSpan > span').html(htmlContent);
 				$('#busyEvents').show();
 			}
 		});
