@@ -74,11 +74,11 @@ APPLICATION_NAME = 'MeetMe class project'
 @app.route("/")
 @app.route("/index")
 def index(extra={}):
-  app.logger.debug("Entering index")
-  if 'begin_date' not in flask.session:
-    init_session_values()
+    app.logger.debug("Entering index")
+    if 'begin_date' not in flask.session:
+        init_session_values()
     flask.session['callbackURL'] = 'index'
-  return render_template('index.html')
+    return render_template('index.html')
 
 @app.route('/arranger/<proposalID>/')
 def arranger(proposalID, extra={}):
