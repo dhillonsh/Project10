@@ -137,6 +137,7 @@ def choose():
 
 @app.route('/selectcalendars', methods=['POST'])
 def selectcalendars():
+    app.logger.debug("Entering selectcalendars")
     credentials = valid_credentials()
     if not credentials:
       app.logger.debug("Redirecting to authorization")
