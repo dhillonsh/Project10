@@ -199,19 +199,17 @@ $(document).ready(function() {
 <script>
 $(function() {
 	$('#blockBusy').on('click', function() {
-		alert($('#calendarList').val());
-		/*$.ajax({
+		$.ajax({
 			method: "POST",
 			url: "/selectcalendars",
-			data: {},
+			data: {
+				'calendarList': $('#calendarList').val()
+			},
 			dataType: 'json',
 			success:function(result) {
-				if (typeof location.origin === 'undefined')
-    					location.origin = location.protocol + '//' + location.host;
-				$('#proposalLink').val(location.origin + "/arranger/" + result['returnData'] + "/");
-				$('#proposalLink').show();
+				alert(result);
 			}
-		});*/
+		});
 	});
 	
 	$('#createProposal').on('click', function() {
