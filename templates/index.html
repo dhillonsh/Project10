@@ -158,38 +158,6 @@ From: <input type="time" name="fromTime" id="fromTime" value="{{ session.timeran
 	</span>
 	<br>
 <script>
-$(function() {
-	$('#blockBusy').on('click', function() {
-		$.ajax({
-			method: "POST",
-			url: "/createproposal",
-			data: {},
-			dataType: 'json',
-			success:function(result) {
-				if (typeof location.origin === 'undefined')
-    					location.origin = location.protocol + '//' + location.host;
-				$('#proposalLink').val(location.origin + "/arranger/" + result['returnData'] + "/");
-				$('#proposalLink').show();
-			}
-		});
-	});
-	
-	$('#createProposal').on('click', function() {
-		$("#createProposal").attr('disabled','disabled');
-		$.ajax({
-			method: "POST",
-			url: "/createproposal",
-			data: {},
-			dataType: 'json',
-			success:function(result) {
-				if (typeof location.origin === 'undefined')
-    					location.origin = location.protocol + '//' + location.host;
-				$('#proposalLink').val(location.origin + "/arranger/" + result['returnData'] + "/");
-				$('#proposalLink').show();
-			}
-		});
-	});
-});
 $(document).ready(function() {
 	var busyEvents = {{ g.busyEvents | tojson  }}
 	var eventsList = [];
@@ -228,6 +196,39 @@ $(document).ready(function() {
 		</div>
 	</div>
 {% endif %}
-
+<script>
+$(function() {
+	$('#blockBusy').on('click', function() {
+		$.ajax({
+			method: "POST",
+			url: "/createproposal",
+			data: {},
+			dataType: 'json',
+			success:function(result) {
+				if (typeof location.origin === 'undefined')
+    					location.origin = location.protocol + '//' + location.host;
+				$('#proposalLink').val(location.origin + "/arranger/" + result['returnData'] + "/");
+				$('#proposalLink').show();
+			}
+		});
+	});
+	
+	$('#createProposal').on('click', function() {
+		$("#createProposal").attr('disabled','disabled');
+		$.ajax({
+			method: "POST",
+			url: "/createproposal",
+			data: {},
+			dataType: 'json',
+			success:function(result) {
+				if (typeof location.origin === 'undefined')
+    					location.origin = location.protocol + '//' + location.host;
+				$('#proposalLink').val(location.origin + "/arranger/" + result['returnData'] + "/");
+				$('#proposalLink').show();
+			}
+		});
+	});
+});
+</script>
   </div>  <!-- container (for bootstrap) -->
   </body> </html>
