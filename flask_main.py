@@ -116,11 +116,17 @@ def createproposal():
 def setavailability():
     app.logger.debug("Entering setavailability.")
     meetingProposal = get_records(collection, {'id': flask.session['arranger']['id']})
-    print(meetingProposal)
+    primaryEmail = ""
+    for dic in flask.session['calendarList']:
+        if 'primary' in dic and dic['primary'] == True:
+            primaryEmail = dic['id']
+            break
+    meetingProposal['busyList'][primaryemail] = flask.session['busyList]
+    collection.update({'id':flask.session['arranger']['id']},{"$set":{'busyList':meetingProposal['busyList']}}
     print("\n\n")
     print(flask.session['busyList'])
     
-    return {}
+    return jsonify()
 
 @app.route("/choose")
 def choose():
