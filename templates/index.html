@@ -180,7 +180,7 @@ $(function() {
 			dataType: 'json',
 			success:function(result) {
 				//result['returnData']['busyList']
-				console.log(Object.keys(result));
+				console.log(Object.keys(result['returnData']));
 				console.log(result['returnData']['busyList']);
 				$('#busyEvents').show();
 			}
