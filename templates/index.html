@@ -186,7 +186,7 @@ $(function() {
 					busyEvent = result['returnData']['busyEvents'][i];
 					console.log(busyEvent['summary']);
 					htmlContent += '<div class="row" style="color:' + ((busyEvent['summary'] == "Available")?'green':'red') +';">';
-					htmlContent += '<div class="col-md-2">' + busyEvent['calendar'] + '</div><div class="col-md-4">' + busyEvent['formattedDate'] + '</div><div class="col-md-4">' + busyEvent['summary'] + '</div></div>';
+					htmlContent += '<div class="col-md-2">' + (('calendar' in busyEvent)?busyEvent['calendar']:'') + '</div><div class="col-md-4">' + busyEvent['formattedDate'] + '</div><div class="col-md-4">' + busyEvent['summary'] + '</div></div>';
 				}
 				console.log(htmlContent);
 				$('#busyEvents > span').html(htmlContent);
