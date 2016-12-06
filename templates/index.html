@@ -128,7 +128,7 @@ From: <input type="time" name="fromTime" id="fromTime" value="{{ session.timeran
          {% endif %}
   {% endfor %}
   </div>
-<br><input name="blockBusy" type="submit" value="Block busy calendars" />
+<br><input id="blockBusy" name="blockBusy" type="button" value="Block busy calendars" />
 
 {% endif %}
 
@@ -159,7 +159,7 @@ From: <input type="time" name="fromTime" id="fromTime" value="{{ session.timeran
 	<br>
 <script>
 $(function() {
-	$('#blockBusy').submit(function(e) {
+	$('#blockBusy').on('click', function(e) {
 		alert('a');
 		e.preventDefault();
 	});
