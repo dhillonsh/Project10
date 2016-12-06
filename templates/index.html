@@ -118,7 +118,6 @@ From: <input type="time" name="fromTime" id="fromTime" value="{{ session.timeran
 
 {% if session.calendarList is defined %}
 	<h2>Select Busy Calendars</h2>
-
   <div class="row">
   {% for cal in session.calendarList if cal.selected %}
           <div class="col-md-4">
@@ -160,7 +159,7 @@ From: <input type="time" name="fromTime" id="fromTime" value="{{ session.timeran
 	<br>
 <script>
 $(function() {
-	$('#blockBusy').on('click', function() {
+	$('#blockBusy').on('submit', function() {
 		alert('a');
 		return false;
 	});
