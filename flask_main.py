@@ -184,7 +184,7 @@ def selectcalendars():
     flask.g.calendars = flask.session['calendarList']
     app.logger.debug("Returned from get_gcal_service")
     print("\n\nSending - \n\n")
-    return jsonify(status='ok', returnData=flask.g)
+    return jsonify(status='ok', returnData={'busyEvents': flask.g.busyEvents, 'calendars': flask.g.calendars})
 
 @app.errorhandler(404)
 def page_not_found(error):
