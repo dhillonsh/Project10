@@ -67,7 +67,11 @@
 
 {% if g.proposal is defined and session.arranger is defined %}
   {% if session.primaryEmail == session.arranger.creator %}
-	TESTING SAME EMAIL
+	Currently have responses from:
+	{% for user in session.arranger.busyList %}
+	<br>
+	{{user.primaryEmail}}
+	{% endfor %}
   {% endif %}
 	
 	
