@@ -199,9 +199,10 @@ $(document).ready(function() {
 <script>
 $(function() {
 	$('#blockBusy').on('click', function() {
-		$.ajax({
+		print($('#calendarList').val());
+		/*$.ajax({
 			method: "POST",
-			url: "/createproposal",
+			url: "/selectcalendars",
 			data: {},
 			dataType: 'json',
 			success:function(result) {
@@ -210,7 +211,7 @@ $(function() {
 				$('#proposalLink').val(location.origin + "/arranger/" + result['returnData'] + "/");
 				$('#proposalLink').show();
 			}
-		});
+		});*/
 	});
 	
 	$('#createProposal').on('click', function() {
