@@ -66,6 +66,9 @@
 {% endwith %}
 
 {% if g.proposal is defined and session.arranger is defined %}
+  {{ session.primaryEmail }}
+	
+	
 <h3>Date range for meeting proposed by {{ session.arranger.creator }}</h3>
 <form action="/setrange" method="post">
 Date Range: <input type="text" id="daterange" name="daterange" size="12"
