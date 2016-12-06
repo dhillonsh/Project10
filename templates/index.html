@@ -203,7 +203,7 @@ $(function() {
 			method: "POST",
 			url: "/selectcalendars",
 			data: {
-				'calendarList': $('#calendarList').val()
+				'calendarList[]': $('#calendarList').val()
 			},
 			dataType: 'json',
 			success:function(result) {
