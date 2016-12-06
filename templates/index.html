@@ -118,7 +118,7 @@ From: <input type="time" name="fromTime" id="fromTime" value="{{ session.timeran
 
 {% if session.calendarList is defined %}
 	<h2>Select Busy Calendars</h2>
-<form action="/selectcalendars" method="post">
+
   <div class="row">
   {% for cal in session.calendarList if cal.selected %}
           <div class="col-md-4">
@@ -129,8 +129,8 @@ From: <input type="time" name="fromTime" id="fromTime" value="{{ session.timeran
          {% endif %}
   {% endfor %}
   </div>
-<br><input type="submit" value="Block busy calendars" />
-</form>
+<br><input name="blockBusy" type="submit" value="Block busy calendars" />
+
 {% endif %}
 
 {% if g.busyEvents is defined  %}
@@ -160,6 +160,11 @@ From: <input type="time" name="fromTime" id="fromTime" value="{{ session.timeran
 	<br>
 <script>
 $(function() {
+	$('#blockBusy').on('click', function() {
+		alert('a');
+		return false;
+	});
+	
 	$('#createProposal').on('click', function() {
 		$("#createProposal").attr('disabled','disabled');
 		$.ajax({
