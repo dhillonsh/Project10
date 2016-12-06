@@ -89,12 +89,12 @@ def arranger(proposalID, extra={}):
     flask.session['callbackURL'] = 'arranger'
     meetingProposal['daterange'] = arrow.get(meetingProposal['begin_date']).format("MM/DD/YYYY") + " - " + arrow.get(meetingProposal['end_date']).format("MM/DD/YYYY")
     meetingProposal['timerange'] = [arrow.get(meetingProposal['begin_time']).format("HH:mm"), arrow.get(meetingProposal['end_time']).format("HH:mm")]
-    flask.session['arranger'] = meetingProposal
     
     globalBusyTimes = []
     for key, val in meetingProposal['busyList'].items():
         globalBusyTimes.extend(val)
-    print(globalBusyTimes)
+
+    flask.session['arranger'] = meetingProposal
     flask.g.proposal = True
     return render_template('index.html')
 
@@ -118,8 +118,9 @@ def setavailability():
         if 'primary' in dic and dic['primary'] == True:
             primaryEmail = dic['id']
             break
+    primaryEmail = primaryEmail.replace('.','')
     meetingProposal['busyList'][primaryEmail] = flask.session['busyList']
-    collection.update({'id':flask.session['arranger']['id']},{"$set":{'busyList':meetingProposal['busyList']}}, upsert=True)
+    collection.update({'id':flask.session['arranger']['id']},{"$set":{'busyList':meetingProposal['busyList']}})
     return jsonify()
 
 @app.route("/choose")
