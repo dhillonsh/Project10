@@ -182,7 +182,8 @@ def selectcalendars():
     flask.session['busyList'] = databaseEntry
     flask.g.calendars = flask.session['calendarList']
     app.logger.debug("Returned from get_gcal_service")
-    
+    print("Sending - ")
+    print(flask.g)
     if 'callbackURL' in flask.session and flask.session['callbackURL'] == 'arranger':
         return flask.redirect(flask.url_for('arranger', proposalID=flask.session['arranger']['id'], extra=flask.g))
     else:
