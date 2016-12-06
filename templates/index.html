@@ -199,8 +199,8 @@ $(document).ready(function() {
 <script>
 $(function() {
 	$('#blockBusy').on('click', function() {
-		dataArr = []
-		$("input[name='calendarList[]'] :checked").each(function(k,v) {
+		var dataArr = [];
+		$("input[name='calendarList[]']").each(function(k,v) {
 			dataArr.push($(v).val());
 			alert($(v).val());
 		});
