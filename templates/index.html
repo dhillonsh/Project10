@@ -163,48 +163,7 @@ From: <input type="time" name="fromTime" id="fromTime" value="{{ session.timeran
 	</span>
 	<br>
 {% endif %}
-	<!--
-<script>
-$(document).readypan>
-	<br>(function() {
-	var busyEvents = {{ g.busyEvents | tojson  }}
-	var eventsList = [];
-	for(var i = 0; i < busyEvents.length; i++) {	
-		eventsList.push({'title': busyEvents[i]['summary'], 'start': busyEvents[i]['start'], 'end': busyEvents[i]['end']});
-	}
-	$('#calendar').fullCalendar({
-		header: {
-			left: 'prev,next today',
-			center: 'title',
-			right: 'listDay,listWeek,month'
-		},
 
-		// customize the button names,
-		// otherwise they'd all just say "list"
-		views: {
-			listDay: { buttonText: 'list day' },
-			listWeek: { buttonText: 'list week' }
-		},
-
-		defaultView: 'month',
-		defaultDate: $('#daterange').val().split(' - ')[0],
-		navLinks: true, // can click day/week names to navigate views
-		editable: true,
-		eventLimit: true, // allow "more" link when too many events
-		events: eventsList
-	});
-
-});
-
-</script>
-
-	<br>
-	<div class="row">
-		<div class=".col-md-6">
-	<div id='calendar'></div>
-		</div>
-	</div>
--->
 <script>
 $(function() {
 	$('#blockBusy').on('click', function() {
