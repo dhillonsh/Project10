@@ -132,7 +132,7 @@ From: <input type="time" name="fromTime" id="fromTime" value="{{ session.timeran
 
 {% endif %}
 
-{% if g.busyEvents is defined  %}
+<span id="busyEvents" style="display:None;">
 	<h3>Busy Times:</h3>
   {% for busyEvent in g.busyEvents %}
   <div class="row" style="color:{% if busyEvent.summary == "Available" %}green{% else %}red{% endif %};">
@@ -149,16 +149,20 @@ From: <input type="time" name="fromTime" id="fromTime" value="{{ session.timeran
 		{{ busyEvent.summary }}
 	  </div>
   </div>
+</span>
   {% endfor %}
 	<br>
+{% if g.proposal is not defined %}
 	<span align="center">
 		<input type="button" id="createProposal" name="createProposal" value="Create Meeting Proposal" />
 		<br>
 		Proposal Link: <input type="text" readonly="readonly" onClick="this.select();" id="proposalLink" name="proposalLink" style="display:hidden;" value="" />
 	</span>
 	<br>
+{% endif %}
 <script>
-$(document).ready(function() {
+$(document).readypan>
+	<br>(function() {
 	var busyEvents = {{ g.busyEvents | tojson  }}
 	var eventsList = [];
 	for(var i = 0; i < busyEvents.length; i++) {	
@@ -211,7 +215,8 @@ $(function() {
 			},
 			dataType: 'json',
 			success:function(result) {
-				console.log(Object.keys(result));
+				//result['returnData']['busyList']
+				$('#busyEvents').show();
 			}
 		});
 	});
