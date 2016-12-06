@@ -86,14 +86,11 @@ def arranger(proposalID, extra={}):
     meetingProposal = get_records(collection, {'id': proposalID})
     if not meetingProposal:
         return flask.render_template('page_not_found.html'), 404
-    print(meetingProposal)
     flask.session['callbackURL'] = 'arranger'
     meetingProposal['daterange'] = arrow.get(meetingProposal['begin_date']).format("MM/DD/YYYY") + " - " + arrow.get(meetingProposal['end_date']).format("MM/DD/YYYY")
     meetingProposal['timerange'] = [arrow.get(meetingProposal['begin_time']).format("HH:mm"), arrow.get(meetingProposal['end_time']).format("HH:mm")]
     flask.session['arranger'] = meetingProposal
     flask.g.proposal = True
-    print(flask.session['calendarList'])
-    print(extra)
     return render_template('index.html')
 
 @app.route("/logout")
@@ -121,13 +118,8 @@ def setavailability():
         if 'primary' in dic and dic['primary'] == True:
             primaryEmail = dic['id']
             break
-    print("Primary Email: " + primaryEmail)
-    print(meetingProposal['busyList'])
     meetingProposal['busyList'][primaryEmail] = flask.session['busyList']
     collection.update({'id':flask.session['arranger']['id']},{"$set":{'busyList':meetingProposal['busyList']}})
-    print("\n\n")
-    print(flask.session['busyList'])
-    
     return jsonify()
 
 @app.route("/choose")
@@ -167,13 +159,8 @@ def selectcalendars():
     
     busyTimes = []
     databaseEntry = []
-    print("Form Data:")
-    print(request.form.getlist('calendarList[]'))
     for calendar in request.form.getlist('calendarList[]'):
-      print(flask.session['begin_date'])
-      print(flask.session['end_date'])
       eventList = gcal_service.events().list(calendarId=calendar, timeMin=arrow.get(flask.session['begin_date']).replace(hour=begin_time.hour,minute=begin_time.minute).isoformat(), timeMax=arrow.get(flask.session['end_date']).replace(hour=end_time.hour,minute=end_time.minute), singleEvents=True, orderBy='startTime').execute()
-      print(eventList)
       for item in eventList['items']:
         if 'transparency' in item:
           continue
@@ -203,7 +190,6 @@ def selectcalendars():
     flask.session['busyList'] = databaseEntry
     flask.g.calendars = flask.session['calendarList']
     app.logger.debug("Returned from get_gcal_service")
-    print("\n\nSending - \n\n")
     return jsonify(status='ok', returnData={'busyEvents': flask.g.busyEvents, 'calendars': flask.g.calendars})
 
 @app.errorhandler(404)
