@@ -73,7 +73,7 @@ APPLICATION_NAME = 'MeetMe class project'
 
 @app.route("/")
 @app.route("/index")
-def index():
+def index(extra={}):
   app.logger.debug("Entering index")
   if 'begin_date' not in flask.session:
     init_session_values()
@@ -81,7 +81,7 @@ def index():
   return render_template('index.html')
 
 @app.route('/arranger/<proposalID>/')
-def arranger(proposalID):
+def arranger(proposalID, extra={}):
     app.logger.debug("Entering arranger")
     meetingProposal = get_records(collection, {'id': proposalID})
     if not meetingProposal:
@@ -93,6 +93,7 @@ def arranger(proposalID):
     flask.session['arranger'] = meetingProposal
     flask.g.proposal = True
     print(flask.session['calendarList'])
+    print(extra)
     return render_template('index.html')
 
 @app.route("/logout")
@@ -181,7 +182,11 @@ def selectcalendars():
     flask.session['busyList'] = databaseEntry
     flask.g.calendars = flask.session['calendarList']
     app.logger.debug("Returned from get_gcal_service")
-    return render_template('index.html')
+    
+    if 'callbackURL' in flask.session and flask.session['callbackURL'] == 'arranger':
+        return flask.redirect(flask.url_for('arranger', proposalID=flask.session['arranger']['id'], extra=flask.g))
+    else:
+        return flask.redirect(flask.url_for('index', extra=flask.g))
 
 @app.errorhandler(404)
 def page_not_found(error):
