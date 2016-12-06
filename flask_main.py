@@ -114,6 +114,7 @@ def createproposal():
     
 @app.route("/setavailability", methods=['POST'])
 def setavailability():
+    app.logger.debug("Entering setavailability.")
     meetingProposal = get_records(collection, {'id': flask.session['arranger']['id']})
     print(meetingProposal)
     print("\n\n")
