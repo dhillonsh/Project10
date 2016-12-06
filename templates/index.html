@@ -132,7 +132,7 @@ From: <input type="time" name="fromTime" id="fromTime" value="{{ session.timeran
 
 {% endif %}
 
-<span id="busyEventsSpan" style="display:None;">
+<span id="busyEvents" style="display:None;">
 	<h3>Busy Times:</h3>
 <span>
 	
@@ -189,7 +189,7 @@ $(function() {
 					htmlContent += '<div class="col-md-2">' + busyEvent['calendar'] + '</div><div class="col-md-4">' + busyEvent['formattedDate'] + '</div><div class="col-md-4">' + busyEvent['summary'] + '</div></div>';
 				}
 				console.log(htmlContent);
-				$('#busyEventsSpan > span').html(htmlContent);
+				$('#busyEvents > span').html(htmlContent);
 				$('#busyEvents').show();
 			}
 		});
