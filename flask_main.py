@@ -94,7 +94,8 @@ def arranger(proposalID, extra={}):
     for key, val in meetingProposal['busyList'].items():
         globalBusyTimes.extend(val)
     print(globalBusyTimes)
-    #sortedBusyTimes = sorted(globalBusyTimes, key=lambda k: k['start'])
+    sortedBusyTimes = sorted(globalBusyTimes, key=lambda k: k['start'])
+    print(sortedBusyTimes)
     flask.session['arranger'] = meetingProposal
     flask.g.proposal = True
     return render_template('index.html')
