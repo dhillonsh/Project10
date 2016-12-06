@@ -113,7 +113,7 @@ def createproposal():
     return jsonify(status='ok', returnData=entry['id'])
     
 @app.route("/setavailability", methods=['POST'])
-def createproposal():
+def setavailability():
     meetingProposal = get_records(collection, {'id': flask.session['arranger']['id']})
     print(meetingProposal)
     print("\n\n")
