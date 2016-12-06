@@ -184,6 +184,7 @@ $(function() {
 				var htmlContent = "";
 				for (var i = 0; i < result['returnData']['busyEvents'].length; i++) {
 					busyEvent = result['returnData']['busyEvents'][i];
+					console.log(busyEvent['summary']);
 					htmlContent += '<div class="row" style="color:' + ((busyEvent['summary'] == "Available")?'green':'red') +';">';
 					htmlContent += '<div class="col-md-2">' + (('calendar' in busyEvent)?busyEvent['calendar']:'') + '</div><div class="col-md-4">' + busyEvent['formattedDate'] + '</div><div class="col-md-4">' + busyEvent['summary'] + '</div></div>';
 				}
