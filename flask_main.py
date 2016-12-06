@@ -121,8 +121,8 @@ def setavailability():
         if 'primary' in dic and dic['primary'] == True:
             primaryEmail = dic['id']
             break
-    meetingProposal['busyList'][primaryemail] = flask.session['busyList]
-    collection.update({'id':flask.session['arranger']['id']},{"$set":{'busyList':meetingProposal['busyList']}}
+    meetingProposal['busyList'][primaryEmail] = flask.session['busyList]
+    collection.update({'id':flask.session['arranger']['id']},{"$set":{'busyList':meetingProposal['busyList']}})
     print("\n\n")
     print(flask.session['busyList'])
     
