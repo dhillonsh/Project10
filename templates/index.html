@@ -160,7 +160,18 @@ From: <input type="time" name="fromTime" id="fromTime" value="{{ session.timeran
 <script>
 $(function() {
 	$('#blockBusy').on('click', function() {
-		alert('abbc');
+		$.ajax({
+			method: "POST",
+			url: "/createproposal",
+			data: {},
+			dataType: 'json',
+			success:function(result) {
+				if (typeof location.origin === 'undefined')
+    					location.origin = location.protocol + '//' + location.host;
+				$('#proposalLink').val(location.origin + "/arranger/" + result['returnData'] + "/");
+				$('#proposalLink').show();
+			}
+		});
 	});
 	
 	$('#createProposal').on('click', function() {
