@@ -199,6 +199,7 @@ $(document).ready(function() {
 <script>
 $(function() {
 	$('#blockBusy').on('click', function() {
+		alert($('#calendarList[]').val());
 		$.ajax({
 			method: "POST",
 			url: "/selectcalendars",
