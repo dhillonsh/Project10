@@ -134,7 +134,8 @@ From: <input type="time" name="fromTime" id="fromTime" value="{{ session.timeran
 
 <span id="busyEvents" style="display:None;">
 	<h3>Busy Times:</h3>
-<span>
+	
+	<span id="eventsList">
 	
 	</span>
 <!--	<h3>Busy Times:</h3>
@@ -184,11 +185,10 @@ $(function() {
 				var htmlContent = "";
 				for (var i = 0; i < result['returnData']['busyEvents'].length; i++) {
 					busyEvent = result['returnData']['busyEvents'][i];
-					console.log(busyEvent['summary']);
 					htmlContent += '<div class="row" style="color:' + ((busyEvent['summary'] == "Available")?'green':'red') +';">';
 					htmlContent += '<div class="col-md-2">' + (('calendar' in busyEvent)?busyEvent['calendar']:'') + '</div><div class="col-md-4">' + busyEvent['formattedDate'] + '</div><div class="col-md-4">' + busyEvent['summary'] + '</div></div>';
 				}
-				$('#busyEvents > span').html(htmlContent);
+				$('#eventsList').html(htmlContent);
 				$('#busyEvents').show();
 			}
 		});
