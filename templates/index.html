@@ -179,9 +179,10 @@ $(function() {
 			},
 			dataType: 'json',
 			success:function(result) {
-				//result['returnData']['busyList']
-				console.log(Object.keys(result['returnData']));
 				console.log(result['returnData']['busyEvents']);
+				for (var i = 0; i < result['returnData']['busyEvents'].length; i++) {
+				    console.log(result['returnData']['busyEvents'][i]['summary']);
+				}
 				$('#busyEvents').show();
 			}
 		});
