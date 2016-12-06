@@ -100,11 +100,6 @@ def logout():
 
 @app.route("/createproposal", methods=['POST'])
 def createproposal():
-    primaryEmail = ""
-    for dic in flask.session['calendarList']:
-        if 'primary' in dic and dic['primary'] == True:
-            primaryEmail = dic['id']
-            break
     entry = {'type': "dated_calendar", 'id': codecs.encode(os.urandom(32), 'hex').decode()[0:12], 'creator': primaryEmail, 'begin_date': flask.session['begin_date'], 'end_date': flask.session['end_date'], 'begin_time': flask.session['begin_time'], 'end_time': flask.session['end_time'], 'busyList': {primaryEmail: flask.session['busyList']}}
     collection.insert(entry,check_keys=False)
     return jsonify(status='ok', returnData=entry['id'])
@@ -138,7 +133,14 @@ def choose():
     app.logger.debug("Returned from get_gcal_service")
     flask.session['calendarList'] = list_calendars(gcal_service)
     flask.g.calendars = flask.session['calendarList']
-
+    
+    primaryEmail = ""
+    for dic in flask.session['calendarList']:
+        if 'primary' in dic and dic['primary'] == True:
+            primaryEmail = dic['id']
+            break
+    flask.session['primaryEmail'] = primaryEmail
+    
     if 'callbackURL' in flask.session and flask.session['callbackURL'] == 'arranger':
         return flask.redirect(flask.url_for('arranger', proposalID=flask.session['arranger']['id']))
     else:
@@ -309,10 +311,6 @@ def setrange():
     widget.
     """
     app.logger.debug("Entering setrange")
-    f = request.form
-    for key in f.keys():
-        for value in f.getlist(key):
-            print(key,":",value)
     flask.flash("Setrange gave us '" + request.form.get('daterange') + "' and [from: " + request.form.get('fromTime') + " to " + request.form.get('toTime') + "]")
     daterange = request.form.get('daterange')
     flask.session['daterange'] = daterange
