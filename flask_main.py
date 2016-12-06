@@ -105,6 +105,12 @@ def logout():
 
 @app.route("/createproposal", methods=['POST'])
 def createproposal():
+    primaryEmail = ""
+    for dic in flask.session['calendarList']:
+        if 'primary' in dic and dic['primary'] == True:
+            primaryEmail = dic['id']
+            break
+    primaryEmail = primaryEmail.replace('.','')
     entry = {'type': "dated_calendar", 'id': codecs.encode(os.urandom(32), 'hex').decode()[0:12], 'creator': primaryEmail, 'begin_date': flask.session['begin_date'], 'end_date': flask.session['end_date'], 'begin_time': flask.session['begin_time'], 'end_time': flask.session['end_time'], 'busyList': {primaryEmail: flask.session['busyList']}}
     collection.insert(entry,check_keys=False)
     return jsonify(status='ok', returnData=entry['id'])
@@ -145,7 +151,7 @@ def choose():
         if 'primary' in dic and dic['primary'] == True:
             primaryEmail = dic['id']
             break
-    flask.session['primaryEmail'] = primaryEmail
+    flask.session['primaryEmail'] = primaryEmail.replace('.','')
     
     if 'callbackURL' in flask.session and flask.session['callbackURL'] == 'arranger':
         return flask.redirect(flask.url_for('arranger', proposalID=flask.session['arranger']['id']))
