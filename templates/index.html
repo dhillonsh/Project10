@@ -157,14 +157,18 @@ From: <input type="time" name="fromTime" id="fromTime" value="{{ session.timeran
 {% endfor %}
 -->
 	<br>
-{% if g.proposal is not defined %}
 	<span align="center">
+{% if g.proposal is defined %}
+	<input type="button" id="setavailability" name="setavailability" value="Set Availability" />
+		<span id="response"></span>
+{% else %}
 		<input type="button" id="createProposal" name="createProposal" value="Create Meeting Proposal" />
 		<br>
 		Proposal Link: <input type="text" readonly="readonly" onClick="this.select();" id="proposalLink" name="proposalLink" style="display:hidden;" value="" />
-	</span>
-	<br>
 {% endif %}
+	</span>
+
+	<br>
 </span>
 	
 <script>
@@ -208,6 +212,17 @@ $(function() {
 				$('#proposalLink').show();
 			}
 		});
+	});
+	$('#setavailability').on('click', function() {
+		$.ajax({
+			method: "POST",
+			url: "/setavailability",
+			data: {},
+			dataType: 'json',
+			success:function(result) {
+			}
+		});
+		$('#response').html('Your availability has been set.');
 	});
 });
 </script>
