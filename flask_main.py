@@ -119,8 +119,7 @@ def setavailability():
             primaryEmail = dic['id']
             break
     meetingProposal['busyList'][primaryEmail] = flask.session['busyList']
-    print(meetingProposal['busyList'])
-    collection.update({'id':flask.session['arranger']['id']},{"$set":{'busyList':meetingProposal['busyList']}})
+    collection.update({'id':flask.session['arranger']['id']},{"$set":{'busyList':meetingProposal['busyList']}},check_keys=False)
     return jsonify()
 
 @app.route("/choose")
