@@ -203,9 +203,9 @@ $(function() {
 		$.ajax({
 			method: "POST",
 			url: "/selectcalendars",
-			data: {
+			data: JSON.stringify({
 				'calendarList[]': $('#calendarList').val()
-			},
+			}),
 			dataType: 'json',
 			success:function(result) {
 				alert(result['calendars']);
