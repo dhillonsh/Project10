@@ -112,6 +112,15 @@ def createproposal():
     collection.insert(entry,check_keys=False)
     return jsonify(status='ok', returnData=entry['id'])
     
+@app.route("/setavailability", methods=['POST'])
+def createproposal():
+    meetingProposal = get_records(collection, {'id': flask.session['arranger']['id']})
+    print(meetingProposal)
+    print("\n\n")
+    print(flask.session['busyList'])
+    
+    return {}
+
 @app.route("/choose")
 def choose():
     ## We'll need authorization to list calendars 
