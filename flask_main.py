@@ -92,9 +92,7 @@ def arranger(proposalID, extra={}):
     
     globalBusyTimes = []
     for key, val in meetingProposal['busyList'].items():
-        print(key)
-        print(val)
-        print("\n\n")
+        meetingProposal['busyList'][key.replace('"','.')] = dictionary.pop(key)
         globalBusyTimes.extend(val)
 
     sortedBusyTimes = sorted(globalBusyTimes, key=lambda k: k['start'])
