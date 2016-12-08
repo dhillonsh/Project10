@@ -61,7 +61,9 @@ app.debug=CONFIG.DEBUG
 app.logger.setLevel(logging.DEBUG)
 app.secret_key=CONFIG.secret_key
 
-SCOPES = 'https://www.googleapis.com/auth/calendar.readonly'
+#SCOPES_MODIFY = 'https://www.googleapis.com/auth/calendar'
+#SCOPES_READONLY = 'https://www.googleapis.com/auth/calendar.readonly'
+SCOPES = 'https://www.googleapis.com/auth/calendar'
 CLIENT_SECRET_FILE = secrets.admin_secrets.google_key_file
 APPLICATION_NAME = 'MeetMe class project'
 
