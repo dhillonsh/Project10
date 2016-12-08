@@ -319,7 +319,7 @@ def get_gcal_service(credentials):
   return service
 
 @app.route('/oauth2callback')
-def oauth2callback(scopeType=SCOPES_READONLY):
+def oauth2callback(scopeType=SCOPES_MODIFY):
   """
   The 'flow' has this one place to call back to.  We'll enter here
   more than once as steps in the flow are completed, and need to keep
