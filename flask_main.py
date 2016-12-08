@@ -61,9 +61,9 @@ app.debug=CONFIG.DEBUG
 app.logger.setLevel(logging.DEBUG)
 app.secret_key=CONFIG.secret_key
 
-#SCOPES_MODIFY = 'https://www.googleapis.com/auth/calendar'
-#SCOPES_READONLY = 'https://www.googleapis.com/auth/calendar.readonly'
-SCOPES = 'https://www.googleapis.com/auth/calendar'
+SCOPES_MODIFY = 'https://www.googleapis.com/auth/calendar'
+SCOPES_READONLY = 'https://www.googleapis.com/auth/calendar.readonly'
+#SCOPES = 'https://www.googleapis.com/auth/calendar'
 CLIENT_SECRET_FILE = secrets.admin_secrets.google_key_file
 APPLICATION_NAME = 'MeetMe class project'
 
@@ -283,7 +283,7 @@ def get_gcal_service(credentials):
   return service
 
 @app.route('/oauth2callback')
-def oauth2callback():
+def oauth2callback(scopeType=SCOPES_READONLY):
   """
   The 'flow' has this one place to call back to.  We'll enter here
   more than once as steps in the flow are completed, and need to keep
@@ -294,7 +294,7 @@ def oauth2callback():
   app.logger.debug("Entering oauth2callback")
   flow =  client.flow_from_clientsecrets(
       CLIENT_SECRET_FILE,
-      scope= SCOPES,
+      scope= scopeType,
       redirect_uri=flask.url_for('oauth2callback', _external=True))
   ## Note we are *not* redirecting above.  We are noting *where*
   ## we will redirect to, which is this function. 
