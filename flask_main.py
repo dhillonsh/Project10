@@ -146,7 +146,10 @@ def choose():
     credentials = valid_credentials()
     if not credentials:
       app.logger.debug("Redirecting to authorization")
-      return flask.redirect(flask.url_for('oauth2callback'))
+      if 'callbackURL' in flask.session and flask.session['callbackURL'] == 'arranger':
+        return flask.redirect(flask.url_for('oauth2callback'))
+      else:
+        return flask.redirect(flask.url_for('oauth2callback', scopeType=SCOPES_MODIFY))
 
     gcal_service = get_gcal_service(credentials)
     app.logger.debug("Returned from get_gcal_service")
