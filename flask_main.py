@@ -113,6 +113,12 @@ def arranger(proposalID, extra={}):
 
 @app.route("/setmeeting")
 def setmeeting():
+    credentials = valid_credentials()
+    if not credentials:
+      app.logger.debug("Redirecting to authorization")
+      return flask.redirect(flask.url_for('oauth2callback'))
+    gcal_service = get_gcal_service(credentials)
+    
     event = {
       'summary': 'Google I/O 2015',
       'location': '800 Howard St., San Francisco, CA 94103',
