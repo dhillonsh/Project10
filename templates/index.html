@@ -116,26 +116,20 @@
 	  <script>
   $( function() {
 	  var busyList = {{ g.agenda|tojson }};
-    		console.log(busyList);
 	  var allowedDays = [];
 	  for (index = 0; index < busyList.length; ++index) {
 	    	console.log(busyList[index]['start']);
 		  var modifiedDate = $.datepicker.formatDate('yy-mm-dd', new Date(busyList[index]['start']));
 		  if(allowedDays.indexOf(modifiedDate) == -1) allowedDays.push(modifiedDate);
 	  }
-		  console.log(allowedDays);
-    	//var array = ["2016-12-14","2016-12-15","2016-12-16"]
-
 	$('#datepicker').datepicker({
 	    beforeShowDay: function(date){
 		var string = jQuery.datepicker.formatDate('yy-mm-dd', date);
-		    
 		return [ allowedDays.indexOf(string) != -1 ]
 	    }
 	});
   } );
   </script>
-</head>
 <body>
  
 <p>Date: <input type="text" id="datepicker"></p>
