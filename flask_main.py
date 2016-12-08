@@ -127,10 +127,11 @@ def setmeeting():
         'dateTime': '2016-12-08T09:00:00-08:00'
       },
       'end': {
-        'dateTime': '2016-12-08T012:00:00-08:00'
+        'dateTime': '2016-12-08T12:00:00-08:00'
       },
       'attendees': [
         {'email': 'mobsterxat@gmail.com'},
+        {'email': 'dhillonsh@gmail.com'},
       ],
       'sendNotifications': True
     }
