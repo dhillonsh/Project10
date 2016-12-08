@@ -111,6 +111,27 @@ def arranger(proposalID, extra={}):
     flask.g.proposal = True
     return render_template('index.html')
 
+@app.route("/setmeeting")
+def setmeeting():
+    event = {
+      'summary': 'Google I/O 2015',
+      'location': '800 Howard St., San Francisco, CA 94103',
+      'description': 'A chance to hear more about Google\'s developer products.',
+      'start': {
+        'dateTime': '2016-12-08T09:00:00-08:00'
+      },
+      'end': {
+        'dateTime': '2016-12-08T012:00:00-08:00'
+      },
+      'attendees': [
+        {'email': 'mobsterxat@gmail.com'},
+      ],
+      'sendNotifications': true
+    }
+    event = gcal_service.events().insert(calendarId='primary', body=event).execute()
+    print 'Event created: %s' % (event.get('htmlLink'))
+    return ""
+
 @app.route("/logout")
 def logout():
   flask.session.clear()
