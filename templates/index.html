@@ -120,7 +120,7 @@
 	  var allowedDays = [];
 	  for (index = 0; index < busyList.length; ++index) {
 	    	console.log(busyList[index]['start']);
-		  var modifiedDate = jQuery.datepicker.formatDate('yy-mm-dd', busyList[index]['start']);
+		  var modifiedDate = $.datepicker.formatDate('yy-mm-dd', busyList[index]['start']);
 		  if(allowedDays.indexOf(modifiedDate) == -1) allowedDays.push(modifiedDate);
 	  }
 		  console.log(allowedDays);
