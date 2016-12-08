@@ -73,6 +73,24 @@
 	<br>
 	{{key}}
 	{% endfor %}
+	
+	  {% for busyEvent in g.arranger.busyEvents %}
+	  <div class="row" style="color:{% if busyEvent.summary == "Available" %}green{% else %}red{% endif %};">
+		<div class="col-md-2">
+		{% if busyEvent.calendar is defined %}
+		 {{ busyEvent.calendar }}
+		{% endif %}
+
+		  </div>
+		<div class="col-md-4">
+			{{ busyEvent.formattedDate }}
+		  </div>
+		<div class="col-md-4">
+			{{ busyEvent.summary }}
+		  </div>
+	  </div>
+	{% endfor %}
+	
   {% endif %}
 	
 	
