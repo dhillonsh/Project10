@@ -89,7 +89,7 @@ def arranger(proposalID, extra={}):
     flask.session['callbackURL'] = 'arranger'
     meetingProposal['daterange'] = arrow.get(meetingProposal['begin_date']).format("MM/DD/YYYY") + " - " + arrow.get(meetingProposal['end_date']).format("MM/DD/YYYY")
     meetingProposal['timerange'] = [arrow.get(meetingProposal['begin_time']).format("HH:mm"), arrow.get(meetingProposal['end_time']).format("HH:mm")]
-    
+    print(meetingProposal['busyList'])
     globalBusyTimes = []
     for key, val in meetingProposal['busyList'].items():
         meetingProposal['busyList'][key.replace('"','.')] =  meetingProposal['busyList'].pop(key)
