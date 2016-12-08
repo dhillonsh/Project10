@@ -115,6 +115,8 @@
   <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
 	  <script>
   $( function() {
+	  var busyList = {{ g.agenda|tojson }};
+    		console.log(busyList);
     	var array = ["2016-12-14","2016-12-15","2016-12-16"]
 
 	$('#datepicker').datepicker({
