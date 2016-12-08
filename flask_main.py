@@ -132,10 +132,9 @@ def setmeeting():
       'attendees': [
         {'email': 'mobsterxat@gmail.com'},
         {'email': 'dhillonsh@gmail.com'},
-      ],
-      'sendNotifications': 'true'
+      ]
     }
-    event = gcal_service.events().insert(calendarId='primary', body=event).execute()
+    event = gcal_service.events().insert(calendarId='primary', body=event, sendNotifications=True).execute()
     print('Event created: %s' % (event.get('htmlLink')))
     return ""
 
