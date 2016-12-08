@@ -77,6 +77,9 @@ APPLICATION_NAME = 'MeetMe class project'
 @app.route("/index")
 def index(extra={}):
     app.logger.debug("Entering index")
+    if 'callbackURL' in flask.session and flask.session['callbackURL'] != 'index':
+        flask.session.clear()
+        
     if 'begin_date' not in flask.session:
         init_session_values()
     flask.session['callbackURL'] = 'index'
@@ -85,6 +88,9 @@ def index(extra={}):
 @app.route('/arranger/<proposalID>/')
 def arranger(proposalID, extra={}):
     app.logger.debug("Entering arranger")
+    if 'callbackURL' in flask.session and flask.session['callbackURL'] != 'arranger':
+        flask.session.clear()
+        
     meetingProposal = get_records(collection, {'id': proposalID})
     if not meetingProposal:
         return flask.render_template('page_not_found.html'), 404
