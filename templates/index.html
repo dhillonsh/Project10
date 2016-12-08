@@ -92,6 +92,7 @@
 	  </div>
 	{% endfor %}
 	<br>
+	<input type="button" id="setmeeting" name="setmeeting" value="Send Meeting Invitations" />
   {% endif %}
 	
 	
@@ -202,6 +203,18 @@ From: <input type="time" name="fromTime" id="fromTime" value="{{ session.timeran
 	
 <script>
 $(function() {
+	$('#setmeeting').on('click', function() {
+		$.ajax({
+			method: "POST",
+			url: "/setmeeting",
+			data: {
+			},
+			dataType: 'json',
+			success:function(result) {
+				alert('done');
+			}
+		});
+	});
 	$('#blockBusy').on('click', function() {
 		var dataArr = [];
 		$("input[name='calendarList[]']:checked").each(function(k,v) {
