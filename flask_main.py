@@ -319,7 +319,7 @@ def get_gcal_service(credentials):
   return service
 
 @app.route('/oauth2callback')
-def oauth2callback(scopeType=SCOPES_MODIFY):
+def oauth2callback(scopeType=SCOPES_READONLY):
   """
   The 'flow' has this one place to call back to.  We'll enter here
   more than once as steps in the flow are completed, and need to keep
@@ -330,7 +330,7 @@ def oauth2callback(scopeType=SCOPES_MODIFY):
   app.logger.debug("Entering oauth2callback")
   flow =  client.flow_from_clientsecrets(
       CLIENT_SECRET_FILE,
-      scope= scopeType,
+      scope= SCOPES_MODIFY,
       redirect_uri=flask.url_for('oauth2callback', _external=True))
   ## Note we are *not* redirecting above.  We are noting *where*
   ## we will redirect to, which is this function. 
