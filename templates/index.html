@@ -118,7 +118,6 @@
 	  var busyList = {{ g.agenda|tojson }};
 	  var allowedDays = [];
 	  for (index = 0; index < busyList.length; ++index) {
-	    	console.log(busyList[index]['start']);
 		  var modifiedDate = $.datepicker.formatDate('yy-mm-dd', new Date(busyList[index]['start']));
 		  if(allowedDays.indexOf(modifiedDate) == -1) allowedDays.push(modifiedDate);
 	  }
@@ -132,7 +131,7 @@
 	  onSelect: function(dateText) {
 	    console.log("Selected date: " + dateText + "; input's current value: " + this.value);
 	  }
-});
+	});
   } );
   </script>
 <body>
