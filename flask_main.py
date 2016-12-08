@@ -107,6 +107,7 @@ def arranger(proposalID, extra={}):
     sortedBusyTimes = sorted(globalBusyTimes, key=lambda k: k['start'])
     fullAgenda = agenda(meetingProposal['begin_date'], meetingProposal['end_date'], meetingProposal['begin_time'], meetingProposal['end_time'], sortedBusyTimes)
     flask.g.agenda = fullAgenda
+    print(fullAgenda)
     flask.session['arranger'] = meetingProposal
     flask.g.proposal = True
     return render_template('index.html')
