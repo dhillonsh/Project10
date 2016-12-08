@@ -128,6 +128,11 @@
 		return [ allowedDays.indexOf(string) != -1 ]
 	    }
 	});
+  	$("#datepicker").datepicker({
+	  onSelect: function(dateText) {
+	    console.log("Selected date: " + dateText + "; input's current value: " + this.value);
+	  }
+});
   } );
   </script>
 <body>
