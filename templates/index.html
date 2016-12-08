@@ -122,11 +122,13 @@
 	    	console.log(busyList[index]['start']);
 		  allowedDays.push(busyList[index]['start']);
 	  }
+		  console.log(allowedDays);
     	var array = ["2016-12-14","2016-12-15","2016-12-16"]
 
 	$('#datepicker').datepicker({
 	    beforeShowDay: function(date){
 		var string = jQuery.datepicker.formatDate('yy-mm-dd', date);
+		    console.log("Test - " + date + " | " + string);
 		return [ allowedDays.indexOf(string) != -1 ]
 	    }
 	});
