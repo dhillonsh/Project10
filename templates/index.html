@@ -74,7 +74,7 @@
 	{{key}}
 	{% endfor %}
 	
-	  {% for busyEvent in session.arranger.busyList %}
+	  {% for busyEvent in g.agenda %}
 	  <div class="row" style="color:{% if busyEvent.summary == "Available" %}green{% else %}red{% endif %};">
 		<div class="col-md-2">
 		{% if busyEvent.calendar is defined %}
