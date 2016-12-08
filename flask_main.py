@@ -156,7 +156,7 @@ def choose():
         if 'primary' in dic and dic['primary'] == True:
             primaryEmail = dic['id']
             break
-    flask.session['primaryEmail'] = primaryEmail.replace('.','"')
+    flask.session['primaryEmail'] = primaryEmail
     
     if 'callbackURL' in flask.session and flask.session['callbackURL'] == 'arranger':
         return flask.redirect(flask.url_for('arranger', proposalID=flask.session['arranger']['id']))
