@@ -120,16 +120,17 @@
 	  var allowedDays = [];
 	  for (index = 0; index < busyList.length; ++index) {
 	    	console.log(busyList[index]['start']);
-		  allowedDays.push(busyList[index]['start']);
+		  var modifiedDate = jQuery.datepicker.formatDate('yy-mm-dd', busyList[index]['start']);
+		  if(allowedDays.indexOf(modifiedDate) == -1) allowedDays.push(modifiedDate);
 	  }
 		  console.log(allowedDays);
-    	var array = ["2016-12-14","2016-12-15","2016-12-16"]
+    	//var array = ["2016-12-14","2016-12-15","2016-12-16"]
 
 	$('#datepicker').datepicker({
 	    beforeShowDay: function(date){
-		var string = jQuery.datepicker.formatDate('yy-mm-dd', date);
-		    console.log("Test - " + date + " | " + string);
-		return [ allowedDays.indexOf(string) != -1 ]
+		//var string = jQuery.datepicker.formatDate('yy-mm-dd', date);
+		    console.log("Test - " + date);
+		return [ allowedDays.indexOf(date) != -1 ]
 	    }
 	});
   } );
