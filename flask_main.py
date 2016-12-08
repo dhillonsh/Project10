@@ -95,6 +95,7 @@ def arranger(proposalID, extra={}):
         meetingProposal['busyList'][key.replace('"','.')] =  meetingProposal['busyList'].pop(key)
         globalBusyTimes.extend(val)
 
+    meetingProposal['creator'] = meetingProposal['creator'].replace('"','.')
     sortedBusyTimes = sorted(globalBusyTimes, key=lambda k: k['start'])
     fullAgenda = agenda(meetingProposal['begin_date'], meetingProposal['end_date'], meetingProposal['begin_time'], meetingProposal['end_time'], sortedBusyTimes)
     flask.g.agenda = fullAgenda
