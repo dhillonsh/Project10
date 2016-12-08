@@ -115,7 +115,14 @@
   <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
 	  <script>
   $( function() {
-    $( "#datepicker" ).datepicker({ minDate: -20, maxDate: "+1M +10D" });
+    	var array = ["2016-12-14","2016-12-15","2016-12-16"]
+
+	$('#datepicker').datepicker({
+	    beforeShowDay: function(date){
+		var string = jQuery.datepicker.formatDate('yy-mm-dd', date);
+		return [ array.indexOf(string) != -1 ]
+	    }
+	});
   } );
   </script>
 </head>
