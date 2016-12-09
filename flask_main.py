@@ -140,7 +140,8 @@ def setmeeting():
       'end': {
         'dateTime': meetingday.replace(hour=endTime.hour, minute=endTime.minute).isoformat()
       },
-      'attendees': emailList
+      'attendees': emailList,
+      'sendNotifications': True
     }
     print(event)
     event = gcal_service.events().insert(calendarId='primary', body=event, sendNotifications=True).execute()
