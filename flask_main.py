@@ -128,7 +128,7 @@ def setmeeting():
     emailList = []
     meetingProposal = get_records(collection, {'id': request.form.get('proposalID')})
     for key, val in meetingProposal['busyList'].items():
-        emailList.append(key.replace('"','.'))
+        emailList.append({'email': key.replace('"','.')})
     collection.update({'id':request.form.get('proposalID')},{"$set":{'active':'0'}})
     event = {
       'summary': request.form.get('summary'),
@@ -140,11 +140,10 @@ def setmeeting():
       'end': {
         'dateTime': meetingday.replace(hour=endTime.hour, minute=endTime.minute).isoformat()
       },
-      'attendees': emailList,
-      'sendNotifications': True
+      'attendees': emailList
     }
     print(event)
-    event = gcal_service.events().insert(calendarId='primary', body=event, sendNotifications=True).execute()
+    event = gcal_service.events().insert(calendarId='primary', sendNotifications=True, body=event).execute()
     print('Event created: %s' % (event.get('htmlLink')))
     return ""
 
