@@ -138,7 +138,7 @@
 			  timeRanges.push([getTime(new Date(busyList[index]['start'])), getTime(new Date(busyList[index]['end']))]);
 		  }
 	     }
-		   console.log(timeRanges);
+		   console.log(timeRanges[0]);
 	    console.log("Selected date: " + dateText + "; input's current value: " + this.value);
 		   $('#timepicker').timepicker('option', { 'disableTimeRanges': timeRanges });
 	  }
