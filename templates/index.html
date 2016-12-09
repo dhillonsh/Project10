@@ -130,7 +130,10 @@
 		var timeRanges = [];
 		for (index = 0; index < busyList.length; ++index) {
 		  var modifiedDate = $.datepicker.formatDate('mm/dd/yy', new Date(busyList[index]['start']));
-		  if(modifiedDate == dateText) timeRanges.push(modifiedDate);
+		  if(modifiedDate == dateText) {
+			  console.log(busyList[index]);
+			  timeRanges.push(busyList[index]);
+		  }
 	     }
 		   console.log(timeRanges);
 	    console.log("Selected date: " + dateText + "; input's current value: " + this.value);
