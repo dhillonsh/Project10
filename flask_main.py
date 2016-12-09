@@ -129,7 +129,6 @@ def setmeeting():
     meetingProposal = get_records(collection, {'id': request.form.get('proposalID')})
     for key, val in meetingProposal['busyList'].items():
         emailList.append(key.replace('"','.'))
-    print(flask.session['arranger'])
     print(emailList)
     event = {
       'summary': request.form.get('summary'),
@@ -143,7 +142,7 @@ def setmeeting():
       },
       'attendees': emailList
     }
-    #event = gcal_service.events().insert(calendarId='primary', body=event, sendNotifications=True).execute()
+    event = gcal_service.events().insert(calendarId='primary', body=event, sendNotifications=True).execute()
     #print('Event created: %s' % (event.get('htmlLink')))
     return ""
 
