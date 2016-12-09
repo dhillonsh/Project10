@@ -97,7 +97,7 @@ def arranger(proposalID, extra={}):
     flask.session['callbackURL'] = 'arranger'
     meetingProposal['daterange'] = arrow.get(meetingProposal['begin_date']).format("MM/DD/YYYY") + " - " + arrow.get(meetingProposal['end_date']).format("MM/DD/YYYY")
     meetingProposal['timerange'] = [arrow.get(meetingProposal['begin_time']).format("HH:mm"), arrow.get(meetingProposal['end_time']).format("HH:mm")]
-    print(meetingProposal['busyList'])
+
     globalBusyTimes = []
     for key, val in meetingProposal['busyList'].items():
         meetingProposal['busyList'][key.replace('"','.')] =  meetingProposal['busyList'].pop(key)
@@ -109,6 +109,7 @@ def arranger(proposalID, extra={}):
     flask.g.agenda = fullAgenda
     print(fullAgenda)
     flask.session['arranger'] = meetingProposal
+    flask.g.proposalID = proposalID
     flask.g.proposal = True
     return render_template('index.html')
 
@@ -125,8 +126,9 @@ def setmeeting():
     endTime = arrow.get(request.form.get('timepickerSTOP'), 'h:mma')
     
     emailList = []
-   # for key, value in flask.session['arranger']['busyList']:
-   #     emailList.append(key.replace('"','.'))
+    meetingProposal = get_records(collection, {'id': request.form.get('proposalID')})
+    for key, val in meetingProposal['busyList'].items():
+        emailList.append(key.replace('"','.'))
     print(flask.session['arranger'])
     print(emailList)
     event = {
