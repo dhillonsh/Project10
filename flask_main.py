@@ -129,7 +129,7 @@ def setmeeting():
     meetingProposal = get_records(collection, {'id': request.form.get('proposalID')})
     for key, val in meetingProposal['busyList'].items():
         emailList.append(key.replace('"','.'))
-    print(emailList)
+    collection.update({'id':request.form.get('proposalID')},{"$set":{'active':'0'}})
     event = {
       'summary': request.form.get('summary'),
       'location': request.form.get('location'),
@@ -159,7 +159,7 @@ def createproposal():
             primaryEmail = dic['id']
             break
     primaryEmail = primaryEmail.replace('.','"')
-    entry = {'type': "dated_calendar", 'id': codecs.encode(os.urandom(32), 'hex').decode()[0:12], 'creator': primaryEmail, 'begin_date': flask.session['begin_date'], 'end_date': flask.session['end_date'], 'begin_time': flask.session['begin_time'], 'end_time': flask.session['end_time'], 'busyList': {primaryEmail: flask.session['busyList']}}
+    entry = {'type': "dated_calendar", 'active': '1', 'id': codecs.encode(os.urandom(32), 'hex').decode()[0:12], 'creator': primaryEmail, 'begin_date': flask.session['begin_date'], 'end_date': flask.session['end_date'], 'begin_time': flask.session['begin_time'], 'end_time': flask.session['end_time'], 'busyList': {primaryEmail: flask.session['busyList']}}
     collection.insert(entry,check_keys=False)
     return jsonify(status='ok', returnData=entry['id'])
     
