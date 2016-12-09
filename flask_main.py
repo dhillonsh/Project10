@@ -142,8 +142,9 @@ def setmeeting():
       },
       'attendees': emailList
     }
+    print(event)
     event = gcal_service.events().insert(calendarId='primary', body=event, sendNotifications=True).execute()
-    #print('Event created: %s' % (event.get('htmlLink')))
+    print('Event created: %s' % (event.get('htmlLink')))
     return ""
 
 @app.route("/logout")
