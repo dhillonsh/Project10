@@ -141,19 +141,18 @@
 		   $('#timepickerSTART').parent().show();
 		 $('#timepickerSTART').timepicker('option', { 'disableTimeRanges': timeRanges });
 		   $('#timepickerSTART').val('');
+		   $('#timepickerSTOP').val('');
 	  }
 	});
 
 		  $('#timepickerSTART').timepicker({
 			'step': 10,
 			 'minTime': formatTime($('#fromTime').val()),
-			 'maxTime': formatTime($('#toTime').val()),
-			 'selectTime': function(t) {
-			  console.log(t);
-		  	 }
+			 'maxTime': formatTime($('#toTime').val())
 		  });
 		  $('#timepickerSTART').on('changeTime', function() {
-		     $('#timepickerSTOP').show();
+		     $('#timepickerSTOP').parent().show();
+		     $('#timepickerSTOP').timepicker('option', { 'minTime': $('#timepickerSTART').val() });  
 		 });
 		  $('#timepickerSTOP').timepicker({
 			'step': 10,
