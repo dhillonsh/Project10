@@ -74,7 +74,9 @@
 {% endwith %}
 
 {% if g.proposal is defined and session.arranger is defined %}
-
+  {% if session.arranger.active == '0' %}
+	The invitation for this meeting has already been sent.
+  {% endif %}
   {% if session.primaryEmail == session.arranger.creator %}
 	Currently have responses from:
 	{% for key, value in session.arranger.busyList.items() %}
