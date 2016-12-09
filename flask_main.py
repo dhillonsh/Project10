@@ -107,7 +107,6 @@ def arranger(proposalID, extra={}):
     sortedBusyTimes = sorted(globalBusyTimes, key=lambda k: k['start'])
     fullAgenda = agenda(meetingProposal['begin_date'], meetingProposal['end_date'], meetingProposal['begin_time'], meetingProposal['end_time'], sortedBusyTimes)
     flask.g.agenda = fullAgenda
-    print(fullAgenda)
     flask.session['arranger'] = meetingProposal
     flask.g.proposalID = proposalID
     flask.g.proposal = True
@@ -142,10 +141,8 @@ def setmeeting():
       },
       'attendees': emailList
     }
-    print(event)
     event = gcal_service.events().insert(calendarId='primary', sendNotifications=True, body=event).execute()
-    print('Event created: %s' % (event.get('htmlLink')))
-    return ""
+    return flask.redirect(flask.url_for('arranger'))
 
 @app.route("/logout")
 def logout():
