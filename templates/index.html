@@ -137,16 +137,13 @@
 		  if(modifiedDate == dateText && !('summary' in busyList[index])) {
 			  timeRanges.push([getTime(new Date(busyList[index]['start'])), getTime(new Date(busyList[index]['end']))]);
 		  }
-	     }
-		   console.log(timeRanges[0]);
-	    console.log("Selected date: " + dateText + "; input's current value: " + this.value);
-		   $('#timepicker').timepicker('option', { 'disableTimeRanges': timeRanges });
-		   console.log(formatTime($('#fromTime').val()));
+	     	}
+		 $('#timepickerSTART').timepicker('option', { 'disableTimeRanges': timeRanges });
 	  }
 	});
 
-		  $('#timepicker').timepicker({
-		//	'step': 5,
+		  $('#timepickerSTART').timepicker({
+			'step': 10,
 			 'minTime': formatTime($('#fromTime').val()),
 			 'maxTime': formatTime($('#toTime').val())
 			  
@@ -160,22 +157,23 @@
 			return hours + ':' + split[1] + ext;  
 		  }
 		  function getTime(date) {
-    var hours = date.getHours(),
-        minutes = date.getMinutes(),
-        ampm = hours >= 12 ? 'pm' : 'am';
+		    var hours = date.getHours(),
+			minutes = date.getMinutes(),
+			ampm = hours >= 12 ? 'pm' : 'am';
 
-  hours = hours % 12;
-  hours = hours ? hours : 12; // the hour '0' should be '12'
-  minutes = minutes < 10 ? '0'+minutes : minutes;
+		  hours = hours % 12;
+		  hours = hours ? hours : 12;
+		  minutes = minutes < 10 ? '0'+minutes : minutes;
 
-  return hours + ':' + minutes + ampm;
-}
+		  return hours + ':' + minutes + ampm;
+		}
   } );
   </script>
 <body>
  
-<p>Date: <input type="text" id="datepicker"></p>
-	<p>Time: <input type="text" id="timepicker"></p>
+<p>Meeting Date: <input type="text" id="datepicker"></p>
+	<p>Meeting Start Time: <input type="text" name="timepickerSTART" id="timepickerSTART"></p>
+	<p>Meeting End Time: <input type="text" name="timepickerEND" id="timepickerEND"></p>
 	<input type="button" id="setmeeting" name="setmeeting" value="Send Meeting Invitations" />
   {% endif %}
 	
