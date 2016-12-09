@@ -32,7 +32,8 @@ def agenda(startDay, endDay, startTime, endTime, busyList):
         toAppend['formattedDate'] = toAppend['formattedDate'] = formatDates(toAppend['start'], toAppend['end'])
         fullAgenda.append(toAppend)
       
-    cur_time = event_end.replace(tzinfo=tz.tzlocal())
+    #cur_time = event_end.replace(tzinfo=tz.tzlocal())
+    cur_time = event_end
     fullAgenda.append(event)
     
   
