@@ -28,14 +28,14 @@
   * (control-C to stop program)
 * The default port is 5000, so the webserver should be reachable at http://localhost:5000 , and also through its IP address.
 * Creating a meeting:
-  * Navigate to http://<Host>/index
+  * Navigate to http://< Host >/index
   * There is an entry for both the date range and time range in which to schedule a meeting within
   * After selecting a range of dates/times, you will be redirected to Google's authorization page. Note: The application will request for read/write permissions which is necessary to send out invitations
   * A selection of calendars will be available to use as busy times in which to schedule meetings around
   * Afterwards, a URL will be displayed which should be sent to the attendees of the meeting.
 * Modifying an existing meeting:
   * It is essential to keep the unique identifier saved, as it is not obtainable any other way.
-   * http://<Host>/arranger/<Unique Identifier>
+   * http://< Host >/arranger/< Unique Identifier >
   * Attendees will simply be prompted to select which calenders to block
   * The creator of the meeting will be able to:
    * See who has set their available times
