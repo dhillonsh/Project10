@@ -19,7 +19,7 @@ def test_noEvents():
 
 def test_singleEvent():
   busyList = [{'summary': 'randomEvent', 'start': "2016-11-17T08:00:00-08:00", 'end': "2016-11-17T08:30:00-08:00"}]
-  print("a")
+
   #Event at the start of the day and time
   startDayEvent = agenda("2016-11-17T00:00:00-08:00","2016-11-17T00:00:00-08:00","2016-11-17T08:00:00-08:00", "2016-11-17T17:00:00-08:00", busyList)
   assert len(startDayEvent) == 2
@@ -29,7 +29,7 @@ def test_singleEvent():
   assert arrow.get(startDayEvent[1]['start']).format('YYYY-MM-DD HH:mm') == "2016-11-17 08:30"
   assert arrow.get(startDayEvent[1]['end']).format('YYYY-MM-DD HH:mm') == "2016-11-17 17:00"
   assert startDayEvent[1]['summary'] == 'Available'
-  print("b")
+
   #Event at the end of the day and time
   busyList[0]['start'] = "2016-11-17T16:30:00-08:00"
   busyList[0]['end'] = "2016-11-17T17:00:00-08:00"
