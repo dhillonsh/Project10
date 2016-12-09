@@ -121,27 +121,25 @@ def setmeeting():
       return flask.redirect(flask.url_for('oauth2callback'))
     gcal_service = get_gcal_service(credentials)
     meetingday = arrow.get(request.form.get('meetingday'),'MM/DD/YYYY').replace(tzinfo=tz.tzlocal())
-    starttime = arrow.get(request.form.get('timepickerSTART'), 'h:mma')
-    print(starttime.isoformat())
-    print(meetingday.isoformat())
-    print("out of set meeting")
-    print(request.form)
-    for i in request.form:
-        print(i)
+    startTime = arrow.get(request.form.get('timepickerSTART'), 'h:mma')
+    endTime = arrow.get(request.form.get('timepickerSTOP'), 'h:mma')
+    
+    emailList = []
+    for key, value in flask.session['arranger']['busyList']:
+        emailList.append(key.replace('"','.'))
+    
+    print(emailList)
     event = {
       'summary': request.form.get('summary'),
       'location': request.form.get('location'),
       'description': request.form.get('description'),
       'start': {
-        'dateTime': '2016-12-08T09:00:00-08:00'
+        'dateTime': meetingday.replace(hour=startTime.hours, minute=startTime.minutes).isoformat()
       },
       'end': {
-        'dateTime': '2016-12-08T12:00:00-08:00'
+        'dateTime': meetingday.replace(hour=endTime.hours, minute=endTime.minutes).isoformat()
       },
-      'attendees': [
-        {'email': 'mobsterxat@gmail.com'},
-        {'email': 'dhillonsh@gmail.com'},
-      ]
+      'attendees': emailList
     }
     #event = gcal_service.events().insert(calendarId='primary', body=event, sendNotifications=True).execute()
     #print('Event created: %s' % (event.get('htmlLink')))
