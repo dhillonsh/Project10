@@ -120,6 +120,7 @@ def setmeeting():
       app.logger.debug("Redirecting to authorization")
       return flask.redirect(flask.url_for('oauth2callback'))
     gcal_service = get_gcal_service(credentials)
+    print("out of set meeting")
     for i in request.form:
         print(i)
     event = {
