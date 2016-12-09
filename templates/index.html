@@ -144,7 +144,7 @@
 		 $('#timepickerSTART').timepicker('option', { 'disableTimeRanges': timeRanges });
 		   $('#timepickerSTART').val('');
 		   $('#timepickerSTOP').val('');
-		   $('#setmeeting').prop('disabled, true);
+		   $('#setmeeting').prop('disabled', true);
 	  }
 	});
 
@@ -163,8 +163,8 @@
 			 'maxTime': formatTime($('#toTime').val())
 		  });
 		   $('#timepickerSTART').on('changeTime', function() {
-		  	$('#setmeeting').prop('disabled, false);
-					      });  
+		  	$('#setmeeting').prop('disabled', false);
+			});  
 		function formatTime(t) {
 			var split = t.split(':');
 			var hours = parseInt(split[0]);
