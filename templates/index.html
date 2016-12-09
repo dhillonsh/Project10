@@ -138,6 +138,7 @@
 			  timeRanges.push([getTime(new Date(busyList[index]['start'])), getTime(new Date(busyList[index]['end']))]);
 		  }
 	     	}
+		   $('#timepickerSTART').parent('span').show();
 		 $('#timepickerSTART').timepicker('option', { 'disableTimeRanges': timeRanges });
 	  }
 	});
@@ -172,8 +173,8 @@
 <body>
  
 <p>Meeting Date: <input type="text" id="datepicker"></p>
-	<p>Meeting Start Time: <input type="text" name="timepickerSTART" id="timepickerSTART"></p>
-	<p>Meeting End Time: <input type="text" name="timepickerEND" id="timepickerEND"></p>
+	<span style="display:hidden;"><p>Meeting Start Time: <input type="text" name="timepickerSTART" id="timepickerSTART"></p></span>
+	<span style="display:hidden;"><p>Meeting End Time: <input type="text" name="timepickerEND" id="timepickerEND"></p></span>
 	<input type="button" id="setmeeting" name="setmeeting" value="Send Meeting Invitations" />
   {% endif %}
 	
