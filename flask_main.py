@@ -120,7 +120,7 @@ def setmeeting():
       app.logger.debug("Redirecting to authorization")
       return flask.redirect(flask.url_for('oauth2callback'))
     gcal_service = get_gcal_service(credentials)
-    meetingday = arrow.get(request.form.get('meetingday'), tzinfo=tz.tzlocal())
+    meetingday = arrow.get(request.form.get('meetingday'),'MM/DD/YYYY').replace(tzinfo=tz.tzlocal())
     print(meetingday.isoformat())
     print("out of set meeting")
     print(request.form)
