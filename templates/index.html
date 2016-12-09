@@ -137,7 +137,10 @@
 		  if(modifiedDate == dateText && !('summary' in busyList[index])) {
 			  
 			  console.log(busyList[index]);
-			  timeRanges.push(busyList[index]);
+			  
+			  var startTime =  new Date(busyList[index]['start']);
+			  console.log(getTime(new Date(busyList[index]['start'])));
+			  //timeRanges.push([startTime, endTime]);
 		  }
 	     }
 		   console.log(timeRanges);
@@ -146,10 +149,22 @@
 	});
 
 		  $('#timepicker').timepicker({
-			'step': 15
+		//	'step': 5,
+			// 'minTime': ,
+			// 'maxTime': ,
 			  
 		  });
-		  
+		  function getTime(date) {
+    var hours = date.getHours(),
+        minutes = date.getMinutes(),
+        ampm = hours >= 12 ? 'pm' : 'am';
+
+  hours = hours % 12;
+  hours = hours ? hours : 12; // the hour '0' should be '12'
+  minutes = minutes < 10 ? '0'+minutes : minutes;
+
+  return hours + ':' + minutes + ' ' + ampm;
+}
   } );
   </script>
 <body>
