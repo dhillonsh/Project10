@@ -147,8 +147,8 @@
 
 		  $('#timepicker').timepicker({
 		//	'step': 5,
-			// 'minTime': {{ session.arranger.timerange.0 }}
-			// 'maxTime': ,
+			 'minTime': formatTime($('#fromTime').val()),
+			 'maxTime': formatTime($('#toTime').val())
 			  
 		  });
 		  function formatTime(t) {
