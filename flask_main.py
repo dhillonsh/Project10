@@ -112,14 +112,14 @@ def arranger(proposalID, extra={}):
     flask.g.proposal = True
     return render_template('index.html')
 
-@app.route("/setmeeting")
+@app.route("/setmeeting", methods=['POST'])
 def setmeeting():
     credentials = valid_credentials()
     if not credentials:
       app.logger.debug("Redirecting to authorization")
       return flask.redirect(flask.url_for('oauth2callback'))
     gcal_service = get_gcal_service(credentials)
-    
+    print(request.form)
     event = {
       'summary': 'Google I/O 2015',
       'location': '800 Howard St., San Francisco, CA 94103',
@@ -135,8 +135,8 @@ def setmeeting():
         {'email': 'dhillonsh@gmail.com'},
       ]
     }
-    event = gcal_service.events().insert(calendarId='primary', body=event, sendNotifications=True).execute()
-    print('Event created: %s' % (event.get('htmlLink')))
+    #event = gcal_service.events().insert(calendarId='primary', body=event, sendNotifications=True).execute()
+    #print('Event created: %s' % (event.get('htmlLink')))
     return ""
 
 @app.route("/logout")
