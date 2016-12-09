@@ -72,7 +72,7 @@
     </ul>
   {% endif %}
 {% endwith %}
-{% if session.arranger.active == '0' %}
+{% if session.arranger is defined and session.arranger.active == '0' %}
 		The invitation for this meeting has already been sent.
 {% else %}
 {% if g.proposal is defined and session.arranger is defined %}
