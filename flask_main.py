@@ -126,7 +126,7 @@ def setmeeting():
         print(i)
     event = {
       'summary': request.form.get('summary'),
-      'location': request.form.get('location')',
+      'location': request.form.get('location'),
       'description': request.form.get('description'),
       'start': {
         'dateTime': '2016-12-08T09:00:00-08:00'
