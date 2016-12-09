@@ -144,6 +144,7 @@
 		 $('#timepickerSTART').timepicker('option', { 'disableTimeRanges': timeRanges });
 		   $('#timepickerSTART').val('');
 		   $('#timepickerSTOP').val('');
+		   $('#setmeeting').prop('disabled, true);
 	  }
 	});
 
@@ -161,7 +162,10 @@
 			 'minTime': formatTime($('#fromTime').val()),
 			 'maxTime': formatTime($('#toTime').val())
 		  });
-		  function formatTime(t) {
+		   $('#timepickerSTART').on('changeTime', function() {
+		  	$('#setmeeting').prop('disabled, false);
+					      });  
+		function formatTime(t) {
 			var split = t.split(':');
 			var hours = parseInt(split[0]);
 			var ext;
@@ -186,7 +190,7 @@
 <p>Meeting Date: <input type="text" id="datepicker"></p>
 	<p style="display:none;">Meeting Start Time: <input type="text" name="timepickerSTART" id="timepickerSTART"></p>
 	<p style="display:none;">Meeting End Time: <input type="text" name="timepickerSTOP" id="timepickerSTOP"></p>
-	<input type="submit" id="setmeeting" name="setmeeting" value="Send Meeting Invitations" />
+	<input type="submit" id="setmeeting" name="setmeeting" value="Send Meeting Invitations" disabled />
 		</form>
   {% endif %}
 	
