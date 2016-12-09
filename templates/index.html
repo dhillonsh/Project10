@@ -141,7 +141,7 @@
 		   console.log(timeRanges[0]);
 	    console.log("Selected date: " + dateText + "; input's current value: " + this.value);
 		   $('#timepicker').timepicker('option', { 'disableTimeRanges': timeRanges });
-		   console.log({{ session.arranger.timerange.0 }});
+		   console.log(new Date("{{ session.arranger.timerange.0 }}"));
 	  }
 	});
 
