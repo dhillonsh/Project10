@@ -101,6 +101,7 @@
 	{% endfor %}
 	<br>
 	<h3>Meeting Specifics</h3>
+	<form action="/setmeeting" method="POST">
 	<table border="1">
 		<tr>
 			<td>Summary:</td>
@@ -181,14 +182,13 @@
 		}
   } );
   </script>
-<body>
  
 <p>Meeting Date: <input type="text" id="datepicker"></p>
 	<p style="display:none;">Meeting Start Time: <input type="text" name="timepickerSTART" id="timepickerSTART"></p>
 	<p style="display:none;">Meeting End Time: <input type="text" name="timepickerSTOP" id="timepickerSTOP"></p>
 	<input type="button" id="setmeeting" name="setmeeting" value="Send Meeting Invitations" />
   {% endif %}
-	
+	</form>
 	
 <h3>Date range for meeting proposed by {{ session.arranger.creator }}</h3>
 <form action="/setrange" method="post">
