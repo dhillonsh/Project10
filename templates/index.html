@@ -127,6 +127,12 @@
 		return [ allowedDays.indexOf(string) != -1 ]
 	    },
 	   onSelect: function(dateText, inst) {
+		var timeRanges = [];
+		for (index = 0; index < busyList.length; ++index) {
+		  var modifiedDate = $.datepicker.formatDate('mm/dd/yy', new Date(busyList[index]['start']));
+		  if(modifiedDate == dateText) timeRanges.push(modifiedDate);
+	     }
+		   console.log(timeRanges);
 	    console.log("Selected date: " + dateText + "; input's current value: " + this.value);
 	  }
 	});
