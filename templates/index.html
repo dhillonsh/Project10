@@ -73,7 +73,7 @@
   {% endif %}
 {% endwith %}
 {% if session.arranger is defined and session.arranger.active == '0' %}
-		The invitation for this meeting has already been sent.
+		The invitation for this meeting has been sent.
 {% else %}
 {% if g.proposal is defined and session.arranger is defined %}
   {% if session.primaryEmail == session.arranger.creator %}
