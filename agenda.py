@@ -7,7 +7,8 @@ def agenda(startDay, endDay, startTime, endTime, busyList):
   begin_date = arrow.get(startDay).replace(hour=begin_time.hour, minute=begin_time.minute)
   end_date = arrow.get(endDay).replace(hour=end_time.hour, minute=end_time.minute)
 
-  cur_time = begin_date.replace(tzinfo=tz.tzlocal())
+  #cur_time = begin_date.replace(tzinfo=tz.tzlocal())
+  cur_time = begin_date
   fullAgenda = []
   #print(busyList)
   for event in busyList:
