@@ -130,7 +130,8 @@
 		var timeRanges = [];
 		for (index = 0; index < busyList.length; ++index) {
 		  var modifiedDate = $.datepicker.formatDate('mm/dd/yy', new Date(busyList[index]['start']));
-		  if(modifiedDate == dateText) {
+		  if(modifiedDate == dateText && !('summary' in busyList[index])) {
+			  
 			  console.log(busyList[index]);
 			  timeRanges.push(busyList[index]);
 		  }
