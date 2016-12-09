@@ -146,8 +146,15 @@
 		  $('#timepickerSTART').timepicker({
 			'step': 10,
 			 'minTime': formatTime($('#fromTime').val()),
+			 'maxTime': formatTime($('#toTime').val()),
+			 'selectTime': function(t) {
+			  console.log(t);
+		  	 }
+		  });
+		  $('#timepickerSTOP').timepicker({
+			'step': 10,
+			 'minTime': formatTime($('#fromTime').val()),
 			 'maxTime': formatTime($('#toTime').val())
-			  
 		  });
 		  function formatTime(t) {
 			var split = t.split(':');
