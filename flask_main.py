@@ -125,9 +125,9 @@ def setmeeting():
     endTime = arrow.get(request.form.get('timepickerSTOP'), 'h:mma')
     
     emailList = []
-    for key, value in flask.session['arranger']['busyList']:
-        emailList.append(key.replace('"','.'))
-    
+   # for key, value in flask.session['arranger']['busyList']:
+   #     emailList.append(key.replace('"','.'))
+    print(flask.session['arranger'])
     print(emailList)
     event = {
       'summary': request.form.get('summary'),
