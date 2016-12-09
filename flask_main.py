@@ -125,9 +125,9 @@ def setmeeting():
     for i in request.form:
         print(i)
     event = {
-      'summary': 'Google I/O 2015',
-      'location': '800 Howard St., San Francisco, CA 94103',
-      'description': 'A chance to hear more about Google\'s developer products.',
+      'summary': request.form.get('summary'),
+      'location': request.form.get('location')',
+      'description': request.form.get('description'),
       'start': {
         'dateTime': '2016-12-08T09:00:00-08:00'
       },
