@@ -114,6 +114,7 @@ def arranger(proposalID, extra={}):
 
 @app.route("/setmeeting", methods=['POST'])
 def setmeeting():
+    print("In set meeting")
     credentials = valid_credentials()
     if not credentials:
       app.logger.debug("Redirecting to authorization")
