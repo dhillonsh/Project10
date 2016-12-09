@@ -140,6 +140,7 @@
 	     	}
 		   $('#timepickerSTART').parent().show();
 		 $('#timepickerSTART').timepicker('option', { 'disableTimeRanges': timeRanges });
+		   $('#timepickerSTART').val('');
 	  }
 	});
 
@@ -151,6 +152,9 @@
 			  console.log(t);
 		  	 }
 		  });
+		  $('#timepickerSTART').on('changeTime', function() {
+		     $('#timepickerSTOP').show();
+		 });
 		  $('#timepickerSTOP').timepicker({
 			'step': 10,
 			 'minTime': formatTime($('#fromTime').val()),
