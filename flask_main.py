@@ -134,10 +134,10 @@ def setmeeting():
       'location': request.form.get('location'),
       'description': request.form.get('description'),
       'start': {
-        'dateTime': meetingday.replace(hour=startTime.hours, minute=startTime.minutes).isoformat()
+        'dateTime': meetingday.replace(hour=startTime.hour, minute=startTime.minute).isoformat()
       },
       'end': {
-        'dateTime': meetingday.replace(hour=endTime.hours, minute=endTime.minutes).isoformat()
+        'dateTime': meetingday.replace(hour=endTime.hour, minute=endTime.minute).isoformat()
       },
       'attendees': emailList
     }
