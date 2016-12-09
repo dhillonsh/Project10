@@ -142,7 +142,7 @@ def setmeeting():
       'attendees': emailList
     }
     event = gcal_service.events().insert(calendarId='primary', sendNotifications=True, body=event).execute()
-    return flask.redirect(flask.url_for('arranger'))
+    return flask.redirect(flask.url_for('arranger', proposalID = request.form.get('proposalID')))
 
 @app.route("/logout")
 def logout():
