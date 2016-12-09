@@ -42,6 +42,7 @@
    * View the available times for all users
    * Be able to specify a Summary, Description, Location for the meeting (Not necessary)
    * Be able to specify the meeting day, meeting start time, and meeting end time (necessary)
+
 ### Testing the Application ###
 * There are nosetests for this application that can be run with:
   * `cd <targetDirectory>`
