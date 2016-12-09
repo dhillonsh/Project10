@@ -147,7 +147,7 @@ def setmeeting():
 @app.route("/logout")
 def logout():
   flask.session.clear()
-  return ""
+  return flask.redirect(flask.url_for('index'))
 
 @app.route("/createproposal", methods=['POST'])
 def createproposal():
