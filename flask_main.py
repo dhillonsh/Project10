@@ -244,7 +244,7 @@ def selectcalendars():
         databaseEntry.append(copy.copy(toAppend))
         print(item)
 	
-        toAppend['summary'] = item['summary']
+        toAppend['summary'] = item['summary'] if 'summary' in item else ''
         toAppend['calendar'] = eventList['summary']
         toAppend['formattedDate'] = formatDates(arrow.get(toAppend['start']).isoformat(), arrow.get(toAppend['end']).isoformat())
         busyTimes.append(toAppend)
