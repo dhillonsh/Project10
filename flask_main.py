@@ -242,7 +242,7 @@ def selectcalendars():
 
         toAppend = {'start': item['start']['dateTime'], 'end': item['end']['dateTime']}
         databaseEntry.append(copy.copy(toAppend))
-		print(item)
+        print(item)
 	
         toAppend['summary'] = item['summary']
         toAppend['calendar'] = eventList['summary']
